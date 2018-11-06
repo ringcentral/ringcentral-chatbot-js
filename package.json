@@ -1,0 +1,7 @@
+{
+  "name": "ringcentral-chatbot",
+  "version": "0.1.0",
+  "devDependencies": {
+    "standard": "^12.0.1"
+  }
+}
