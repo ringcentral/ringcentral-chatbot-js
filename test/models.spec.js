@@ -7,9 +7,9 @@ import Service from '../src/models/Service'
 describe('models', () => {
   test('default', async () => {
     await sequelize.authenticate()
-    await Bot.sync()
-    await OAuth.sync()
-    await Service.sync()
+    await Bot.sync({ force: true })
+    await OAuth.sync({ force: true })
+    await Service.sync({ force: true })
     await Bot.create({
       id: '1',
       token: {

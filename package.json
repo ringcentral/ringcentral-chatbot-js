@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
-    "test": "rm -rf db.sqlite && node -r dotenv/config ./node_modules/.bin/jest"
+    "test": "cp .env.test .env && node -r dotenv/config ./node_modules/.bin/jest"
   },
   "dependencies": {
     "sequelize": "^4.41.0"
