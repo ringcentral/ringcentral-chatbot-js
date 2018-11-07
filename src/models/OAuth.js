@@ -16,4 +16,6 @@ const OAuth = sequelize.define('oauth', {
   }
 })
 
+OAuth.sync()
+
 export default OAuth

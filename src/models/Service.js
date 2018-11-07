@@ -25,4 +25,6 @@ const Service = sequelize.define('service', {
   }
 })
 
+Service.sync()
+
 export default Service

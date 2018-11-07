@@ -1,5 +1,10 @@
 ## RingCentral Chatbot Framework for JavaScript
 
+## Implemented features
+
+- Bot token management
+
+
 ## Thoughts
 
 https://wiki.ringcentral.com/display/PM/RC4D+Bot+Framework+Requirements
