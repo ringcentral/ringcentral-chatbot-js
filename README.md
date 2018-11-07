@@ -2,7 +2,8 @@
 
 ## Implemented features
 
-- Bot token management
+- bot token management
+- setup bot webhook
 
 
 ## Thoughts
@@ -40,3 +41,8 @@ We also want to have bot frameworks in a few popular languages and have them beh
 ### From Embbnux Ji:
 
 I think we can just create a OAuth plugin for Bot Framework . Such as BotBuilder supports to add plugin for it.  Now I can add Luis or Dialogflow AI easily, because Botbuilder support to add AI plugin.
+
+
+## Todo
+
+- Support private bot app

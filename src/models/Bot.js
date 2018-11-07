@@ -52,7 +52,7 @@ Bot.prototype.validate = async function () {
     const errorCode = e.response.data.errorCode
     if (errorCode === 'OAU-232' || errorCode === 'CMN-405') {
       await this.destroy()
-      console.log(`Bot user ${this.token.owner_id} has been deleted`)
+      console.log(`Bot user ${this.token.owner_id} had been deleted`)
       return false
     }
     console.log('Bot validate', e.response.data)
