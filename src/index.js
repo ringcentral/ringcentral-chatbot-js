@@ -2,7 +2,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 
 import Bot from './models/Bot'
-import bot from './webhook/bot'
+import bot from './express/bot'
 
 (async () => {
   const bots = await Bot.findAll()
@@ -13,7 +13,5 @@ import bot from './webhook/bot'
 
 const app = express()
 app.use(bodyParser.json())
-
-bot.handle(app)
-
+app.use('/bot', bot)
 app.listen(3000)

@@ -20,7 +20,7 @@ Bot.authorize = async code => {
     process.env.RINGCENTRAL_SERVER
   )
   try {
-    await rc.authorize({ code, redirectUri: process.env.RINGCENTRAL_CHATBOT_SERVER + '/bot-oauth' })
+    await rc.authorize({ code, redirectUri: process.env.RINGCENTRAL_CHATBOT_SERVER + '/bot/oauth' })
   } catch (e) {
     console.log('Bot authorize', e.response.data)
     throw e
@@ -73,7 +73,7 @@ Bot.prototype.setupWebHook = async function () {
       expiresIn: 473040000, // 15 years
       deliveryMode: {
         transportType: 'WebHook',
-        address: process.env.RINGCENTRAL_CHATBOT_SERVER + '/bot-webhook'
+        address: process.env.RINGCENTRAL_CHATBOT_SERVER + '/bot/webhook'
       }
     })
     return true
