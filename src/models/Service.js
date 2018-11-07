@@ -2,17 +2,26 @@ import Sequelize from 'sequelize'
 
 import sequelize from './sequelize'
 
-const Service = sequelize.define('services', {
+const Service = sequelize.define('service', {
   name: {
     type: Sequelize.STRING,
     primaryKey: true
   },
-  id: {
+  vendorName: {
     type: Sequelize.STRING,
     primaryKey: true
   },
-  token: {
-    type: Sequelize.JSON
+  ownerId: {
+    type: Sequelize.STRING,
+    primaryKey: true
+  },
+  botId: {
+    type: Sequelize.STRING,
+    primaryKey: true
+  },
+  groupId: {
+    type: Sequelize.STRING,
+    primaryKey: true
   }
 })
 

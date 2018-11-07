@@ -2,8 +2,12 @@ import Sequelize from 'sequelize'
 
 import sequelize from './sequelize'
 
-const Bot = sequelize.define('bot', {
-  id: {
+const OAuth = sequelize.define('oauth', {
+  vendorName: {
+    type: Sequelize.STRING,
+    primaryKey: true
+  },
+  ownerId: {
     type: Sequelize.STRING,
     primaryKey: true
   },
@@ -12,4 +16,4 @@ const Bot = sequelize.define('bot', {
   }
 })
 
-export default Bot
+export default OAuth
