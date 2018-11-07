@@ -4,9 +4,9 @@ import Bot from '../src/models/Bot'
 import OAuth from '../src/models/OAuth'
 import Service from '../src/models/Service'
 
-describe('default', () => {
+describe('models', () => {
   test('default', async () => {
-    await sequelize.authenticate() // will throw if cannot connect
+    await sequelize.authenticate()
     await Bot.sync()
     await OAuth.sync()
     await Service.sync()
@@ -17,6 +17,9 @@ describe('default', () => {
       }
     })
     const bots = await Bot.findAll()
-    console.log(JSON.stringify(bots))
+    expect(bots.map(bot => bot.toJSON())).toEqual([{ id: '1', token: { hello: 'world' } }])
+    expect(bots[0].token).toEqual({ hello: 'world' })
+    const bot = await Bot.findById('1')
+    expect(bot.toJSON()).toEqual({ id: '1', token: { hello: 'world' } })
   })
 })
