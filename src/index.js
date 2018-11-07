@@ -7,7 +7,7 @@ import bot from './webhook/bot'
 (async () => {
   const bots = await Bot.findAll()
   for (const bot of bots) {
-    await bot.validate()
+    await bot.check()
   }
 })()
 

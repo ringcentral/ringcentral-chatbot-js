@@ -44,18 +44,20 @@ Object.defineProperty(Bot.prototype, 'rc', {
   }
 })
 
-Bot.prototype.validate = async function () {
+Bot.prototype.check = async function () {
   try {
     await this.rc.get('/restapi/v1.0/account/~/extension/~')
     return true
   } catch (e) {
+    if (!e.response) {
+      throw e
+    }
     const errorCode = e.response.data.errorCode
     if (errorCode === 'OAU-232' || errorCode === 'CMN-405') {
       await this.destroy()
       console.log(`Bot user ${this.token.owner_id} had been deleted`)
       return false
     }
-    console.log('Bot validate', e.response.data)
     throw e
   }
 }

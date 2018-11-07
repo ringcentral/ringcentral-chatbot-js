@@ -6,7 +6,8 @@ const sequelize = new Sequelize(
     operatorsAliases: false,
     define: {
       timestamps: false
-    }
+    },
+    logging: false
   }
 )
 
