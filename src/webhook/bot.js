@@ -1,6 +1,7 @@
 import delay from 'timeout-as-promise'
 
 import Bot from '../models/Bot'
+import { deleted, groupJoined, postAdded } from '../handlers/bot'
 
 const handle = app => {
   // add bot to Glip
@@ -24,11 +25,13 @@ const handle = app => {
     if (body) {
       switch (body.eventType) {
         case 'Delete':
-          if (body.extensionId) {
-            const bot = await Bot.findByPk(body.extensionId)
-            await bot.destroy()
-            console.log(`Bot user ${body.extensionId} has been deleted`)
-          }
+          deleted(body)
+          break
+        case 'GroupJoined':
+          await groupJoined(body)
+          break
+        case 'PostAdded':
+          await postAdded(body)
           break
         default:
           break
