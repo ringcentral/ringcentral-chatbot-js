@@ -2,6 +2,8 @@
 
 ## Thoughts
 
+https://wiki.ringcentral.com/display/PM/RC4D+Bot+Framework+Requirements
+
 ### From Tyler Liu:
 
 There are existing frameworks such as Hubot, BotBuilder, Errbot...etc which provide high level abstractions among different chatting services: Glip, slack, Microsoft team...etc.
