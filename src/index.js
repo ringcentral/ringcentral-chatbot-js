@@ -3,7 +3,12 @@ import path from 'path'
 
 const sequelize = new Sequelize(
   `sqlite:///${path.join(__dirname, '..', 'db.sqlite')}`,
-  { operatorsAliases: false }
+  {
+    operatorsAliases: false,
+    define: {
+      timestamps: false
+    }
+  }
 )
 
 const Bot = sequelize.define('bots', {
@@ -12,15 +17,22 @@ const Bot = sequelize.define('bots', {
     primaryKey: true
   },
   token: {
-    type: Sequelize.STRING
+    type: Sequelize.JSON
   }
 })
 
 ;(async () => {
-  try {
-    await Bot.sync()
-  } catch (e) {
-    console.log(e)
-    throw e
-  }
+  await sequelize.authenticate() // will throw if cannot connect
+  await Bot.sync()
+  await Bot.create({
+    id: '1',
+    token: {
+      hello: 'world'
+    }
+  })
+  const bots = await Bot.findAll({ attributes: ['id', 'token'] })
+  console.log(bots)
+  console.log(JSON.stringify(bots))
+  console.log(bots[0].id)
+  console.log(bots[0].token)
 })()
