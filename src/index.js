@@ -1,5 +1,7 @@
 import sequelize from './models/sequelize'
 import Bot from './models/Bot'
+import Service from './models/Service'
+import Mapping from './models/Mapping'
 
 (async () => {
   await sequelize.authenticate() // will throw if cannot connect
@@ -11,8 +13,7 @@ import Bot from './models/Bot'
     }
   })
   const bots = await Bot.findAll({ attributes: ['id', 'token'] })
-  console.log(bots)
   console.log(JSON.stringify(bots))
-  console.log(bots[0].id)
-  console.log(bots[0].token)
+  await Service.sync()
+  await Mapping.sync()
 })()
