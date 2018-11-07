@@ -32,6 +32,34 @@ Bot.authorize = async code => {
   })
 }
 
+Object.defineProperty(Bot.prototype, 'rc', {
+  get: function () {
+    const rc = new RingCentral(
+      process.env.RINGCENTRAL_CHATBOT_CLIENT_ID,
+      process.env.RINGCENTRAL_CHATBOT_CLIENT_SECRET,
+      process.env.RINGCENTRAL_SERVER
+    )
+    rc.token(this.token)
+    return rc
+  }
+})
+
+Bot.prototype.validate = async function () {
+  try {
+    await this.rc.get('/restapi/v1.0/account/~/extension/~')
+    return true
+  } catch (e) {
+    const errorCode = e.response.data.errorCode
+    if (errorCode === 'OAU-232' || errorCode === 'CMN-405') {
+      await this.destroy()
+      console.log(`Bot user ${this.token.owner_id} has been deleted`)
+      return false
+    }
+    console.log('Bot validate', e.response.data)
+    throw e
+  }
+}
+
 Bot.sync()
 
 export default Bot
