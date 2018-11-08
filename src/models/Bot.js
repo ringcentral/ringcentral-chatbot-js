@@ -13,30 +13,25 @@ const Bot = sequelize.define('bot', {
   }
 })
 
-Bot.init = async code => {
+Bot.init = async ({ code, token }) => {
   const rc = new RingCentral(
     process.env.RINGCENTRAL_CHATBOT_CLIENT_ID,
     process.env.RINGCENTRAL_CHATBOT_CLIENT_SECRET,
     process.env.RINGCENTRAL_SERVER
   )
-  if (typeof code === 'string') { // public bot
-    try {
-      await rc.authorize({ code, redirectUri: process.env.RINGCENTRAL_CHATBOT_SERVER + '/bot/oauth' })
-    } catch (e) {
-      console.log('Bot authorize', e.response.data)
-      throw e
-    }
+  if (code) { // public bot
+    await rc.authorize({ code, redirectUri: process.env.RINGCENTRAL_CHATBOT_SERVER + '/bot/oauth' })
     const token = rc.token()
     return Bot.create({
       id: token.owner_id,
       token
     })
-  } else { // private bot
-    rc.token(code)
+  } else if (token) { // private bot
+    rc.token(token)
     const r = await rc.get('/restapi/v1.0/account/~/extension/~')
     return Bot.create({
       id: r.data.id,
-      token: { ...code, owner_id: r.data.id }
+      token: { ...token, owner_id: r.data.id }
     })
   }
 }

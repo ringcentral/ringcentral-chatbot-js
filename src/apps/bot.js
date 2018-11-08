@@ -9,7 +9,7 @@ const app = express()
 // add private bot to Glip
 app.post('/oauth', async (req, res) => {
   const token = req.body
-  const bot = await Bot.init(token)
+  const bot = await Bot.init({ token })
   res.send('Bot added')
 
   // setup WebHook
@@ -22,7 +22,7 @@ app.post('/oauth', async (req, res) => {
 
 // add public bot to Glip
 app.get('/oauth', async (req, res) => {
-  const bot = await Bot.init(req.query.code)
+  const bot = await Bot.init({ code: req.query.code })
   res.send('Bot added')
 
   // setup WebHook
