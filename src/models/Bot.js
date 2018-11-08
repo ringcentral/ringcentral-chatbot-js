@@ -87,6 +87,6 @@ Bot.prototype.setupWebHook = async function () {
   }
 }
 
-Bot.sync()
+Bot.sync() // CREATE TABLE IF NOT EXISTS
 
 export default Bot

@@ -16,6 +16,6 @@ const OAuth = sequelize.define('oauth', {
   }
 })
 
-OAuth.sync()
+OAuth.sync() // CREATE TABLE IF NOT EXISTS
 
 export default OAuth
