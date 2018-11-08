@@ -11,6 +11,5 @@ export const postAdded = async event => {
 export const deleted = async event => {
   const bot = await Bot.findByPk(event.extensionId)
   await bot.destroy()
-  // do other clean up
   console.log(`Bot user ${event.extensionId} has been deleted`)
 }

@@ -48,3 +48,14 @@ I think we can just create a OAuth plugin for Bot Framework . Such as BotBuilder
 - Support private bot app
 - Create a website to auto generate code for developer to download
     - let developer select what he wants to do, what programming language to use, and finally generate the code for him
+- Demo chatbots
+    - ping pong bot
+        - deadly simple, it replies "pong" whenever received "ping"
+    - cron bot
+        - allow you to setup cron jobs as reminders
+    - survey bot
+        - create survey and aggregate result with ease.
+    - RingCentral messages monitoring bot
+        - monitor RingCentral messages
+    - Google drive notification
+        - monitor Google Drive folder/file changes
