@@ -2,7 +2,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 
 import Bot from './models/Bot'
-import bot from './express/bot'
+import botApp from './apps/bot'
 
 (async () => {
   const bots = await Bot.findAll()
@@ -13,5 +13,5 @@ import bot from './express/bot'
 
 const app = express()
 app.use(bodyParser.json())
-app.use('/bot', bot)
+app.use('/bot', botApp)
 app.listen(3000)
