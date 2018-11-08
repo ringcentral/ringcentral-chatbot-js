@@ -1,5 +1,4 @@
 import express from 'express'
-import bodyParser from 'body-parser'
 
 import Bot from './models/Bot'
 import botApp from './apps/bot'
@@ -12,6 +11,7 @@ import botApp from './apps/bot'
 })()
 
 const app = express()
-app.use(bodyParser.json())
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 app.use('/bot', botApp)
 app.listen(3000)
