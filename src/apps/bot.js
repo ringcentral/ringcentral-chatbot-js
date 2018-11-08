@@ -6,16 +6,30 @@ import { deleted, groupJoined, postAdded } from '../handlers/bot'
 
 const app = express()
 
-// add bot to Glip
-app.get('/oauth', async (req, res) => {
-  const bot = await Bot.authorize(req.query.code)
+// add private bot to Glip
+app.post('/oauth', async (req, res) => {
+  const token = req.body
+  const bot = await Bot.init(token)
   res.send('Bot added')
 
   // setup WebHook
   let done = false
   while (!done) { // cannot setup WebHook until bot user is ready
     await delay(10000)
-    done = bot.setupWebHook()
+    done = await bot.setupWebHook()
+  }
+})
+
+// add public bot to Glip
+app.get('/oauth', async (req, res) => {
+  const bot = await Bot.init(req.query.code)
+  res.send('Bot added')
+
+  // setup WebHook
+  let done = false
+  while (!done) { // cannot setup WebHook until bot user is ready
+    await delay(10000)
+    done = await bot.setupWebHook()
   }
 })
 
@@ -27,7 +41,7 @@ app.post('/webhook', async (req, res) => {
   if (body) {
     switch (body.eventType) {
       case 'Delete':
-        deleted(body)
+        await deleted(body)
         break
       case 'GroupJoined':
         await groupJoined(body)

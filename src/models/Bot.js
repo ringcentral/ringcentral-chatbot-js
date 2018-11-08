@@ -13,23 +13,32 @@ const Bot = sequelize.define('bot', {
   }
 })
 
-Bot.authorize = async code => {
+Bot.init = async code => {
   const rc = new RingCentral(
     process.env.RINGCENTRAL_CHATBOT_CLIENT_ID,
     process.env.RINGCENTRAL_CHATBOT_CLIENT_SECRET,
     process.env.RINGCENTRAL_SERVER
   )
-  try {
-    await rc.authorize({ code, redirectUri: process.env.RINGCENTRAL_CHATBOT_SERVER + '/bot/oauth' })
-  } catch (e) {
-    console.log('Bot authorize', e.response.data)
-    throw e
+  if (typeof code === 'string') { // public bot
+    try {
+      await rc.authorize({ code, redirectUri: process.env.RINGCENTRAL_CHATBOT_SERVER + '/bot/oauth' })
+    } catch (e) {
+      console.log('Bot authorize', e.response.data)
+      throw e
+    }
+    const token = rc.token()
+    return Bot.create({
+      id: token.owner_id,
+      token
+    })
+  } else { // private bot
+    rc.token(code)
+    const r = await rc.get('/restapi/v1.0/account/~/extension/~')
+    return Bot.create({
+      id: r.data.id,
+      token: { ...code, owner_id: r.data.id }
+    })
   }
-  const token = rc.token()
-  return Bot.create({
-    id: token.owner_id,
-    token
-  })
 }
 
 Object.defineProperty(Bot.prototype, 'rc', {
@@ -55,7 +64,7 @@ Bot.prototype.check = async function () {
     const errorCode = e.response.data.errorCode
     if (errorCode === 'OAU-232' || errorCode === 'CMN-405') {
       await this.destroy()
-      console.log(`Bot user ${this.token.owner_id} had been deleted`)
+      console.log(`Bot user ${this.id} had been deleted`)
       return false
     }
     throw e

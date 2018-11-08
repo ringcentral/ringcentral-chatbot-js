@@ -45,7 +45,6 @@ I think we can just create a OAuth plugin for Bot Framework . Such as BotBuilder
 
 ## Todo
 
-- Support private bot app
 - Create a website to auto generate code for developer to download
     - let developer select what he wants to do, what programming language to use, and finally generate the code for him
 - Demo chatbots
