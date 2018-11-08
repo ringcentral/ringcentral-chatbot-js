@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "test": "cp .env.test .env && node -r dotenv/config ./node_modules/.bin/jest",
-    "dev": "cp .env.dev.private .env && node -r @babel/register -r dotenv/config src/index.js",
+    "dev": "cp .env.dev .env && node -r @babel/register -r dotenv/config src/index.js",
     "ngrok": "npx ngrok http -region eu 3000"
   },
   "dependencies": {

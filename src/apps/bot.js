@@ -1,4 +1,3 @@
-import delay from 'timeout-as-promise'
 import express from 'express'
 
 import Bot from '../models/Bot'
@@ -6,31 +5,10 @@ import { deleted, groupJoined, postAdded } from '../handlers/bot'
 
 const app = express()
 
-// add private bot to Glip
-app.post('/oauth', async (req, res) => {
-  const token = req.body
-  const bot = await Bot.init({ token })
+app.all('/oauth', async (req, res) => {
+  const bot = await Bot.init({ code: req.query.code, token: req.body })
   res.send('Bot added')
-
-  // setup WebHook
-  let done = false
-  while (!done) { // cannot setup WebHook until bot user is ready
-    await delay(10000)
-    done = await bot.setupWebHook()
-  }
-})
-
-// add public bot to Glip
-app.get('/oauth', async (req, res) => {
-  const bot = await Bot.init({ code: req.query.code })
-  res.send('Bot added')
-
-  // setup WebHook
-  let done = false
-  while (!done) { // cannot setup WebHook until bot user is ready
-    await delay(10000)
-    done = await bot.setupWebHook()
-  }
+  await bot.setupWebHook()
 })
 
 // notification bot for bot users

@@ -1,5 +1,6 @@
 import Sequelize from 'sequelize'
 import RingCentral from 'ringcentral-js-concise'
+import delay from 'timeout-as-promise'
 
 import sequelize from './sequelize'
 
@@ -67,27 +68,30 @@ Bot.prototype.check = async function () {
 }
 
 Bot.prototype.setupWebHook = async function () {
-  try {
-    await this.rc.post('/restapi/v1.0/subscription', {
-      eventFilters: [
-        '/restapi/v1.0/glip/posts',
-        '/restapi/v1.0/glip/groups',
-        '/restapi/v1.0/account/~/extension/~'
-      ],
-      expiresIn: 473040000, // 15 years
-      deliveryMode: {
-        transportType: 'WebHook',
-        address: process.env.RINGCENTRAL_CHATBOT_SERVER + '/bot/webhook'
+  let done = false
+  while (!done) {
+    try {
+      await this.rc.post('/restapi/v1.0/subscription', {
+        eventFilters: [
+          '/restapi/v1.0/glip/posts',
+          '/restapi/v1.0/glip/groups',
+          '/restapi/v1.0/account/~/extension/~'
+        ],
+        expiresIn: 473040000, // 15 years
+        deliveryMode: {
+          transportType: 'WebHook',
+          address: process.env.RINGCENTRAL_CHATBOT_SERVER + '/bot/webhook'
+        }
+      })
+      done = true
+    } catch (e) {
+      const errorCode = e.response.data.errorCode
+      if (errorCode === 'SUB-406') {
+        await delay(10000)
+        continue
       }
-    })
-    return true
-  } catch (e) {
-    const errorCode = e.response.data.errorCode
-    if (errorCode === 'SUB-406') {
-      return false
+      throw e
     }
-    console.log('Bot setupWebHook', e.response.data)
-    throw e
   }
 }
 
