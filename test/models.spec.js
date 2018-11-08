@@ -19,7 +19,7 @@ describe('models', () => {
     const bots = await Bot.findAll()
     expect(bots.map(bot => bot.toJSON())).toEqual([{ id: '1', token: { hello: 'world' } }])
     expect(bots[0].token).toEqual({ hello: 'world' })
-    const bot = await Bot.findById('1')
+    const bot = await Bot.findByPk('1')
     expect(bot.toJSON()).toEqual({ id: '1', token: { hello: 'world' } })
   })
 })
