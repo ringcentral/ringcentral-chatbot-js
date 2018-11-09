@@ -104,6 +104,10 @@ Bot.prototype.setupWebHook = async function () {
   }
 }
 
+Bot.prototype.sendMessage = async function (groupId, messageObj) {
+  await this.rc.post(`/restapi/v1.0/glip/groups/${groupId}/posts`, messageObj)
+}
+
 Bot.sync() // CREATE TABLE IF NOT EXISTS
 
 export default Bot

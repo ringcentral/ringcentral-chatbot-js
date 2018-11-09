@@ -6,6 +6,11 @@ export const groupJoined = async message => {
 
 export const postAdded = async message => {
   console.log('The bot received a new message')
+  if (message.body.text === 'ping') {
+    const botId = message.ownerId
+    const bot = await Bot.findByPk(botId)
+    await bot.sendMessage(message.body.groupId, { text: 'pong' })
+  }
 }
 
 export const deleted = async message => {
