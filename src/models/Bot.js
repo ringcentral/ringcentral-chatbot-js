@@ -67,6 +67,15 @@ Bot.prototype.check = async function () {
   }
 }
 
+Bot.prototype.ensureWebHook = async function () {
+  const r = await this.rc.get('/restapi/v1.0/subscription')
+  for (const sub of r.data.records) {
+    if (sub.deliveryMode.address === process.env.RINGCENTRAL_CHATBOT_SERVER + '/bot/webhook') {
+      return
+    }
+  }
+  await this.setupWebHook()
+}
 Bot.prototype.setupWebHook = async function () {
   let done = false
   while (!done) {
