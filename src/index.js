@@ -6,8 +6,9 @@ import botApp from './apps/bot'
 (async () => {
   const bots = await Bot.findAll()
   for (const bot of bots) {
-    await bot.check()
-    await bot.ensureWebHook()
+    if (await bot.check()) {
+      await bot.ensureWebHook()
+    }
   }
 })()
 
