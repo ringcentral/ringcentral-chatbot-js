@@ -19,13 +19,13 @@ app.post('/webhook', async (req, res) => {
   if (body) {
     switch (body.eventType) {
       case 'Delete':
-        await deleted(body)
+        await deleted(message)
         break
       case 'GroupJoined':
-        await groupJoined(body)
+        await groupJoined(message)
         break
       case 'PostAdded':
-        await postAdded(body)
+        await postAdded(message)
         break
       default:
         break
