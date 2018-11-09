@@ -6,8 +6,12 @@ export const groupJoined = async message => {
 
 export const postAdded = async message => {
   console.log('The bot received a new message')
+  const botId = message.ownerId
+  const userId = message.body.creatorId
+  if (botId === userId) {
+    return // bot should not talk to itself to avoid dead-loop conversation
+  }
   if (message.body.text === 'ping') {
-    const botId = message.ownerId
     const bot = await Bot.findByPk(botId)
     await bot.sendMessage(message.body.groupId, { text: 'pong' })
   }
