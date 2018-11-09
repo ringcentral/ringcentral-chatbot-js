@@ -58,3 +58,4 @@ I think we can just create a OAuth plugin for Bot Framework . Such as BotBuilder
         - monitor RingCentral messages
     - Google drive notification
         - monitor Google Drive folder/file changes
+- Support AWS Lambda

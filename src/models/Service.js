@@ -25,6 +25,4 @@ const Service = sequelize.define('service', {
   }
 })
 
-Service.sync() // CREATE TABLE IF NOT EXISTS
-
 export default Service

@@ -18,7 +18,7 @@ export const postAdded = async message => {
 }
 
 export const deleted = async message => {
+  console.log(`Bot user ${message.body.extensionId} has been deleted`)
   const bot = await Bot.findByPk(message.body.extensionId)
   await bot.destroy()
-  console.log(`Bot user ${message.body.extensionId} has been deleted`)
 }
