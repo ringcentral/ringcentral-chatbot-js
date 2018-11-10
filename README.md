@@ -1,9 +1,21 @@
 ## RingCentral Chatbot Framework for JavaScript
 
+
+## Dev setup
+
+```
+yarn install
+cp .sample.env .env.dev
+edit .env.dev
+yarn dev
+```
+
+
 ## Implemented features
 
-- bot token management
-- setup bot webhook
+- Bot token management
+- Setup bot WebHook
+- Glip message handlers
 
 
 ## Thoughts
