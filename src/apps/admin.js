@@ -6,21 +6,23 @@ import OAuth from '../models/OAuth'
 
 const app = express()
 
-app.put('/database', async (req, res) => {
+// create database tables if not exists
+app.put('/setup-database', async (req, res) => {
   await Bot.sync()
   await Service.sync()
   await OAuth.sync()
-  res.send('database inited')
+  res.send('database setup')
 })
 
-app.put('/webhook', async (req, res) => {
+// "reboot": remove dead bots from database, ensure live bots have WebHooks
+app.put('/reboot', async (req, res) => {
   const bots = await Bot.findAll()
   for (const bot of bots) {
     if (await bot.check()) {
       await bot.ensureWebHook()
     }
   }
-  res.send('webhook inited')
+  res.send('reboot')
 })
 
 export default app
