@@ -8,6 +8,7 @@
     "ngrok": "npx ngrok http -region eu 3000"
   },
   "dependencies": {
+    "aws-serverless-express": "^3.3.5",
     "express": "^4.16.4",
     "ringcentral-js-concise": "^0.6.2",
     "sequelize": "^4.41.0",
