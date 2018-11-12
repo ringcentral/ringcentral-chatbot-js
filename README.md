@@ -80,4 +80,4 @@ I think we can just create a OAuth plugin for Bot Framework . Such as BotBuilder
     - If you create an RDS manually and let it create a new security group for you.
         - By default, the security group only allows inbound traffic from your current laptop's public IP address
         - AWS Lambda by default cannot access the newly created AWS RDS
-        - We need to update security group
+        - We need to update security group to allow inbound traffic from `0.0.0.0/0`
