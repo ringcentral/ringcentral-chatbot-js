@@ -1,0 +1,21 @@
+service:
+  name: ringcentral-chatbot-js
+provider:
+  name: aws
+  runtime: nodejs8.10
+  region: us-east-1
+  memorySize: 128
+  timeout: 180
+  environment: ${file(./.env.yml):${self:provider.stage}}
+package:
+    include:
+      dist
+    excludeDevDependencies: true
+functions:
+  app:
+    handler: dist/index.handler
+    events:
+        - http: ANY /
+        - http: 'ANY {proxy+}'
+plugins:
+  - serverless-offline
