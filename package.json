@@ -6,11 +6,13 @@
     "test": "cp .env.test .env && node -r dotenv/config ./node_modules/.bin/jest",
     "dev": "cp .env.dev .env && node -r @babel/register -r dotenv/config src/index.js",
     "ngrok": "ngrok http -region eu 3000",
-    "build": "babel src --watch --out-dir dist",
-    "sls-offline": "sls offline start"
+    "build": "babel src --watch --out-dir dist --source-maps",
+    "sls-offline": "sls offline start",
+    "deploy": "sls deploy --stage prod"
   },
   "dependencies": {
     "express": "^4.16.4",
+    "pg": "^7.6.1",
     "ringcentral-js-concise": "^0.6.2",
     "sequelize": "^4.41.0",
     "serverless-http": "^1.8.0",
