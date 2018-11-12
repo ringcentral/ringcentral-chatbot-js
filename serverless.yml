@@ -8,17 +8,23 @@ provider:
   memorySize: 128
   timeout: 30
   environment: ${file(./.env.yml):${self:provider.stage}}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - lambda:*
+      Resource: "*"
 package:
-    exclude:
-      - ./**
-      - '!dist/**'
-      - '!node_modules/**'
-    excludeDevDependencies: true
+  exclude:
+    - ./**
+    - '!dist/**'
+    - '!node_modules/**'
+  excludeDevDependencies: true
 functions:
   app:
     handler: dist/index.handler
+  proxy:
+    handler: dist/index.proxy
     events:
-        - http: ANY /
-        - http: 'ANY {proxy+}'
+      - http: 'ANY {proxy+}'
 plugins:
   - serverless-offline

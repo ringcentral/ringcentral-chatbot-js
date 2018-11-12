@@ -13,6 +13,7 @@
     "logs": "AWS_PROFILE=524621635179/okta-full-access-no-iam/tyler.liu_source npx sls logs -f app --stage prod -t"
   },
   "dependencies": {
+    "aws-sdk": "^2.353.0",
     "express": "^4.16.4",
     "pg": "^7.6.1",
     "ringcentral-js-concise": "^0.6.2",

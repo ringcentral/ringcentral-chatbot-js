@@ -20,4 +20,17 @@ if (port) { // express.js
   })
 } else { // AWS lambda
   module.exports.handler = serverlessHTTP(app)
+  module.exports.proxy = (event, context, callback) => {
+    console.log(JSON.stringify(event, null, 2))
+    const Lambda = require('aws-sdk/clients/lambda')
+    const lambda = new Lambda({ region: process.env.AWS_REGION })
+    lambda.invoke({
+      FunctionName: 'ringcentral-chatbot-js-prod-app',
+      InvocationType: 'Event', // so `lambda.invoke` is async
+      Payload: JSON.stringify(event)
+    }, (error, data) => {
+      console.log(error, data)
+    })
+    callback(null, { statusCode: 200, body: '', headers: { 'Validation-Token': event.headers['Validation-Token'] } })
+  }
 }
