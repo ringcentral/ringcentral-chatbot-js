@@ -1,6 +1,5 @@
 import express from 'express'
 import serverlessHTTP from 'serverless-http'
-import request from 'request-promise'
 
 import botApp from './apps/bot'
 import adminApp from './apps/admin'
@@ -15,6 +14,7 @@ const port = process.env.RINGCENTRAL_CHATBOT_EXPRESS_PORT
 if (port) { // express.js
   app.listen(port, async () => {
     console.log(`Listening on ${port}`)
+    const request = require('request-promise')
     await request.put(`http://localhost:${port}/admin/setup-database`)
     await request.put(`http://localhost:${port}/admin/reboot`)
   })
