@@ -8,7 +8,8 @@
     "ngrok": "ngrok http -region eu 3000",
     "build": "babel src --watch --out-dir dist --source-maps",
     "sls-offline": "sls offline start",
-    "deploy": "sls deploy --stage prod"
+    "package": "sls package",
+    "deploy": "~/.okta/aws-token && AWS_PROFILE=524621635179/okta-full-access-no-iam/tyler.liu_source sls deploy --stage prod"
   },
   "dependencies": {
     "express": "^4.16.4",
