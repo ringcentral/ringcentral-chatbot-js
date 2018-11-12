@@ -5,9 +5,9 @@
   "scripts": {
     "test": "cp .env.test .env && node -r dotenv/config ./node_modules/.bin/jest",
     "dev": "cp .env.dev .env && node -r @babel/register -r dotenv/config src/index.js",
-    "ngrok": "npx ngrok http -region eu 3000",
+    "ngrok": "ngrok http -region eu 3000",
     "build": "babel src --watch --out-dir dist",
-    "local": "LAMBDA_TASK_ROOT=1 sls offline start"
+    "sls-offline": "LAMBDA_TASK_ROOT=1 sls offline start"
   },
   "dependencies": {
     "express": "^4.16.4",

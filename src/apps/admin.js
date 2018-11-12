@@ -11,7 +11,7 @@ app.put('/setup-database', async (req, res) => {
   await Bot.sync()
   await Service.sync()
   await OAuth.sync()
-  res.send('database setup')
+  res.send('')
 })
 
 // "reboot": remove dead bots from database, ensure live bots have WebHooks
@@ -22,7 +22,7 @@ app.put('/reboot', async (req, res) => {
       await bot.ensureWebHook()
     }
   }
-  res.send('reboot')
+  res.send('')
 })
 
 export default app
