@@ -8,8 +8,10 @@ provider:
   timeout: 180
   environment: ${file(./.env.yml):${self:provider.stage}}
 package:
-    include:
-      dist
+    exclude:
+      - ./**
+      - '!dist/**'
+      - '!node_modules/**'
     excludeDevDependencies: true
 functions:
   app:
