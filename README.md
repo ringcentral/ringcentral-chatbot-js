@@ -72,3 +72,12 @@ I think we can just create a OAuth plugin for Bot Framework . Such as BotBuilder
         - monitor Google Drive folder/file changes
 - Support AWS Lambda
     - https://dev.to/saigowthamr/build-and-deploy-a-rest-api--using-serverless-express-and-nodejs-3331
+
+
+## Notes
+
+- AWS Lambda connects AWS RDS issue
+    - If you create an RDS manually and let it create a new security group for you.
+        - By default, the security group only allows inbound traffic from your current laptop's public IP address
+        - AWS Lambda by default cannot access the newly created AWS RDS
+        - We need to update security group
