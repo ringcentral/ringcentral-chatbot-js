@@ -10,7 +10,7 @@
     "sls-offline": "sls offline start",
     "package": "sls package",
     "deploy": "~/.okta/aws-token && AWS_PROFILE=524621635179/okta-full-access-no-iam/tyler.liu_source sls deploy --stage prod",
-    "logs": "AWS_PROFILE=524621635179/okta-full-access-no-iam/tyler.liu_source npx sls logs -f app --stage prod"
+    "logs": "AWS_PROFILE=524621635179/okta-full-access-no-iam/tyler.liu_source npx sls logs -f app --stage prod -t"
   },
   "dependencies": {
     "express": "^4.16.4",
