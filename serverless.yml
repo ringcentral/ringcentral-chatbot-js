@@ -21,10 +21,8 @@ package:
 functions:
   app:
     handler: dist/index.handler
-    timeout: 180 # 3 miutes
+    timeout: 300 # 5 miutes
   proxy:
     handler: dist/index.proxy
     events:
       - http: 'ANY {proxy+}'
-plugins:
-  - serverless-offline

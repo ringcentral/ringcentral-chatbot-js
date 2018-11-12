@@ -7,7 +7,6 @@
     "dev": "cp .env.dev .env && node -r @babel/register -r dotenv/config src/index.js",
     "ngrok": "ngrok http -region eu 3000",
     "build": "babel src --watch --out-dir dist --source-maps",
-    "sls-offline": "sls offline start",
     "package": "sls package",
     "deploy": "~/.okta/aws-token && AWS_PROFILE=524621635179/okta-full-access-no-iam/tyler.liu_source sls deploy --stage prod",
     "logs": "AWS_PROFILE=524621635179/okta-full-access-no-iam/tyler.liu_source npx sls logs -f app --stage prod -t"
@@ -33,7 +32,6 @@
     "ngrok": "^3.1.0",
     "request-promise": "^4.2.2",
     "serverless": "^1.32.0",
-    "serverless-offline": "^3.31.2",
     "sqlite3": "^4.0.3",
     "standard": "^12.0.1",
     "yarn-upgrade-all": "^0.5.0"
