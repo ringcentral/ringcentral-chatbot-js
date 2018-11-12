@@ -1,11 +1,12 @@
 service:
   name: ringcentral-chatbot-js
 provider:
+  stage: ${opt:stage, 'dev'}
   name: aws
   runtime: nodejs8.10
   region: us-east-1
   memorySize: 128
-  timeout: 180
+  timeout: 30
   environment: ${file(./.env.yml):${self:provider.stage}}
 package:
     exclude:
