@@ -7,11 +7,10 @@
     "dev": "cp .env.dev .env && node -r @babel/register -r dotenv/config src/index.js",
     "ngrok": "ngrok http -region eu 3000",
     "build": "babel src --watch --out-dir dist",
-    "sls-offline": "LAMBDA_TASK_ROOT=1 sls offline start"
+    "sls-offline": "sls offline start"
   },
   "dependencies": {
     "express": "^4.16.4",
-    "request-promise": "^4.2.2",
     "ringcentral-js-concise": "^0.6.2",
     "sequelize": "^4.41.0",
     "serverless-http": "^1.8.0",
@@ -27,6 +26,7 @@
     "dotenv": "^6.1.0",
     "jest": "^23.6.0",
     "ngrok": "^3.1.0",
+    "request-promise": "^4.2.2",
     "serverless": "^1.32.0",
     "serverless-offline": "^3.31.2",
     "sqlite3": "^4.0.3",

@@ -11,7 +11,6 @@ app.all('/oauth', async (req, res) => {
   await bot.setupWebHook() // this might take a while, depends on when the bot user is ready
 })
 
-// notification for bot users
 app.post('/webhook', async (req, res) => {
   res.header('validation-token', req.header('validation-token'))
   res.send('')
