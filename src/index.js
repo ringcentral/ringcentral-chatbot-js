@@ -25,7 +25,7 @@ if (port) { // express.js
     const Lambda = require('aws-sdk/clients/lambda')
     const lambda = new Lambda({ region: process.env.AWS_REGION })
     lambda.invoke({
-      FunctionName: 'ringcentral-chatbot-js-prod-app',
+      FunctionName: process.env.AWS_LAMBDA_FUNCTION_NAME.replace(/-proxy$/, '-app'),
       InvocationType: 'Event', // so `lambda.invoke` is async
       Payload: JSON.stringify(event)
     }, (error, data) => {

@@ -60,8 +60,6 @@ I think we can just create a OAuth plugin for Bot Framework . Such as BotBuilder
 - Create a website to auto generate code for developer to download
     - let developer select what he wants to do, what programming language to use, and finally generate the code for him
 - Demo chatbots
-    - ping pong bot
-        - deadly simple, it replies "pong" whenever received "ping"
     - cron bot
         - allow you to setup cron jobs as reminders
     - survey bot
@@ -70,8 +68,6 @@ I think we can just create a OAuth plugin for Bot Framework . Such as BotBuilder
         - monitor RingCentral messages
     - Google drive notification
         - monitor Google Drive folder/file changes
-- Support AWS Lambda
-    - https://dev.to/saigowthamr/build-and-deploy-a-rest-api--using-serverless-express-and-nodejs-3331
 
 
 ## Notes

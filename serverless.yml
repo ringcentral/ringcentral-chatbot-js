@@ -6,12 +6,11 @@ provider:
   runtime: nodejs8.10
   region: us-east-1
   memorySize: 128
-  timeout: 30
   environment: ${file(./.env.yml):${self:provider.stage}}
   iamRoleStatements:
     - Effect: Allow
       Action:
-        - lambda:*
+        - lambda:InvokeFunction
       Resource: "*"
 package:
   exclude:
@@ -22,6 +21,7 @@ package:
 functions:
   app:
     handler: dist/index.handler
+    timeout: 180 # 3 miutes
   proxy:
     handler: dist/index.proxy
     events:
