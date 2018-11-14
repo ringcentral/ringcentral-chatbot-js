@@ -11,11 +11,22 @@ yarn dev
 ```
 
 
+## Deploy to AWS Lambda
+
+```
+cp .sample.env.yml .env.yml
+edit .env.yml
+yarn build
+yarn deploy
+```
+
+
 ## Implemented features
 
 - Bot token management
 - Setup bot WebHook
 - Glip message handlers
+- Support AWS Lambda
 
 
 ## Thoughts
