@@ -108,4 +108,9 @@ Bot.prototype.sendMessage = async function (groupId, messageObj) {
   await this.rc.post(`/restapi/v1.0/glip/groups/${groupId}/posts`, messageObj)
 }
 
+Bot.prototype.getGroup = async function (groupId) {
+  const r = await this.rc.get(`/restapi/v1.0/glip/groups/${groupId}`)
+  return r.data
+}
+
 export default Bot

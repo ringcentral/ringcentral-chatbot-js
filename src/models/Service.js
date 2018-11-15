@@ -3,25 +3,25 @@ import Sequelize from 'sequelize'
 import sequelize from './sequelize'
 
 const Service = sequelize.define('service', {
-  name: {
-    type: Sequelize.STRING,
+  id: { // service ID
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
     primaryKey: true
   },
-  vendorName: {
-    type: Sequelize.STRING,
-    primaryKey: true
+  name: { // service name
+    type: Sequelize.STRING
   },
-  ownerId: {
-    type: Sequelize.STRING,
-    primaryKey: true
+  botId: { // Glip bot ID
+    type: Sequelize.STRING
   },
-  botId: {
-    type: Sequelize.STRING,
-    primaryKey: true
+  groupId: { // Glip group ID
+    type: Sequelize.STRING
   },
-  groupId: {
-    type: Sequelize.STRING,
-    primaryKey: true
+  userId: { // Glip user ID
+    type: Sequelize.STRING
+  },
+  data: { // all other data associcated with this service
+    type: Sequelize.JSON
   }
 })
 

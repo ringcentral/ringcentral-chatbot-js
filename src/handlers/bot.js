@@ -1,4 +1,5 @@
 import Bot from '../models/Bot'
+import commandHandler from './command'
 
 export const groupJoined = async message => {
   console.log('The bot joins a new chat group')
@@ -11,10 +12,21 @@ export const postAdded = async message => {
   if (botId === userId) {
     return // bot should not talk to itself to avoid dead-loop conversation
   }
-  if (message.body.text === 'ping') {
-    const bot = await Bot.findByPk(botId)
-    await bot.sendMessage(message.body.groupId, { text: 'pong' })
+  const groupId = message.body.groupId
+  const bot = await Bot.findByPk(botId)
+  const group = await bot.getGroup(groupId)
+  const isPrivateChat = group.members.length <= 2
+  if (!isPrivateChat && (
+    message.body.mentions === null ||
+    !message.body.mentions.some(m => m.type === 'Person' && m.id === botId)
+  )) {
+    return
   }
+  let text = message.body.text
+  text = text.replace(/!\[:Person\]\(\d+\)/g, ' ').trim()
+  const command = text.split(/\s+/)[0]
+  const args = text.split(/\s+(.+)/)[1]
+  commandHandler(command, args)
 }
 
 export const deleted = async message => {
