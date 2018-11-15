@@ -26,7 +26,7 @@ export const postAdded = async message => {
   text = text.replace(/!\[:Person\]\(\d+\)/g, ' ').trim()
   const command = text.split(/\s+/)[0]
   const args = text.split(/\s+(.+)/)[1]
-  let replies = await commandHandler(command, args)
+  let replies = await commandHandler(command, args, { botId, groupId, userId })
   if (replies) {
     if (!Array.isArray(replies)) {
       replies = [replies]
