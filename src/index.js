@@ -33,19 +33,20 @@ if (port) { // express.js
     })
     callback(null, { statusCode: 200, body: '', headers: { 'Validation-Token': event.headers['Validation-Token'] } })
   }
-  module.exports.crontab = async (event, content, callback) => {
-    const services = await Service.findAll({
-      name: 'Crontab'
-    })
-    for (const service of services) {
-      const interval = cronParser.parseExpression(service.data.expression, { utc: true })
-      const prevTimestamp = interval.prev()._date
-      const currentTimestamp = moment.tz(new Date(), 'utc')
-      const delta = currentTimestamp - prevTimestamp
-      if (delta < 30) {
-        const bot = await Bot.findByPk(service.botId)
-        bot.sendMessage(service.groupId, { text: service.message })
-      }
+}
+
+module.exports.crontab = async (event, content, callback) => {
+  const services = await Service.findAll({
+    name: 'Crontab'
+  })
+  for (const service of services) {
+    const interval = cronParser.parseExpression(service.data.expression, { utc: true })
+    const prevTimestamp = interval.prev()._date
+    const currentTimestamp = moment.tz(new Date(), 'utc')
+    const delta = currentTimestamp - prevTimestamp
+    if (delta < 20000) { // 20 seconds
+      const bot = await Bot.findByPk(service.botId)
+      bot.sendMessage(service.groupId, { text: service.data.message })
     }
   }
 }

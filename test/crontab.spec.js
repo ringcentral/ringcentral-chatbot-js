@@ -11,7 +11,7 @@ describe('models', () => {
     const delta = currentTimestamp - prevTimestamp
 
     expect(delta).toBeGreaterThanOrEqual(0)
-    expect(delta).toBeLessThanOrEqual(120000)
+    expect(delta).toBeLessThanOrEqual(120000) // milliseconds
   })
 
   test('wrong syntax', () => {
