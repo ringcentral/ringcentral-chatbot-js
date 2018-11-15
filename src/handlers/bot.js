@@ -26,7 +26,10 @@ export const postAdded = async message => {
   text = text.replace(/!\[:Person\]\(\d+\)/g, ' ').trim()
   const command = text.split(/\s+/)[0]
   const args = text.split(/\s+(.+)/)[1]
-  commandHandler(command, args)
+  const reply = await commandHandler(command, args)
+  if (reply) {
+    await bot.sendMessage(groupId, reply)
+  }
 }
 
 export const deleted = async message => {
