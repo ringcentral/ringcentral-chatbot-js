@@ -13,7 +13,9 @@
   },
   "dependencies": {
     "aws-sdk": "^2.355.0",
+    "cron-parser": "^2.7.1",
     "express": "^4.16.4",
+    "moment-timezone": "^0.5.23",
     "pg": "^7.6.1",
     "ringcentral-js-concise": "^0.6.2",
     "sequelize": "^4.41.2",
