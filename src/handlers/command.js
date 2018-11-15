@@ -66,8 +66,18 @@ const handler = async (command, args, options) => {
       return { text: `cron job added: [code]${expression} ${message}[/code]` }
     case 'list':
     case 'ls':
-      // todo: list all cron jobs
-      return { text: 'all cron jobs' }
+      let services = await Service.findAll({
+        where: {
+          name: 'Crontab',
+          botId: options.botId,
+          groupId: options.groupId
+        }
+      })
+      services = services.map(s => s.toJSON())
+      if (services.length === 0) {
+        return { text: 'No cron job created for this chat group' }
+      }
+      return { text: services.map(s => `ID: **${s.id}** [code]${s.data.expression} ${s.data.message}[/code]`).join('\n') }
     case 'remove':
     case 'rm':
     case 'delete':
