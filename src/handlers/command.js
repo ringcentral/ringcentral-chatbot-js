@@ -75,14 +75,23 @@ const handler = async (command, args, options) => {
       })
       services = services.map(s => s.toJSON())
       if (services.length === 0) {
-        return { text: 'No cron job created for this chat group' }
+        return { text: 'No cron job found for this chat group' }
       }
       return { text: services.map(s => `ID: **${s.id}** [code]${s.data.expression} ${s.data.message}[/code]`).join('\n') }
     case 'remove':
     case 'rm':
     case 'delete':
-      // todo: delete cron job
-      return { text: 'cron job deleted' }
+      const id = args.split(/\s+/)[0]
+      const service = await Service.findByPk(id)
+      if (service === null) {
+        return { text: `cannot find cron job with ID ${id}` }
+      }
+      if (service.groupId === options.groupId) {
+        await service.destroy()
+        return { text: 'cron job deleted' }
+      } else {
+        return { text: 'You don\'t have perission to delete this cron job' }
+      }
     default:
       return [{ text: 'Sorry, I don\'t understand, please check the manual:' }, help(undefined)]
   }
