@@ -2,7 +2,6 @@ import express from 'express'
 
 import Bot from '../models/Bot'
 import Service from '../models/Service'
-import OAuth from '../models/OAuth'
 
 const app = express()
 
@@ -10,7 +9,6 @@ const app = express()
 app.put('/setup-database', async (req, res) => {
   await Bot.sync()
   await Service.sync()
-  await OAuth.sync()
   res.send('')
 })
 
