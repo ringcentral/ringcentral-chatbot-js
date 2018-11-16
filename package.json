@@ -1,6 +1,6 @@
 {
   "name": "ringcentral-chatbot",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "scripts": {
     "test": "cp .env.test .env && node -r dotenv/config ./node_modules/.bin/jest",
@@ -46,5 +46,9 @@
     "ignore": [
       "/dist/"
     ]
-  }
+  },
+  "files": [
+    "src/*",
+    "yarn.lock"
+  ]
 }
