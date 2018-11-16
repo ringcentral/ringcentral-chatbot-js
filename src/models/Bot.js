@@ -54,10 +54,10 @@ Bot.prototype.check = async function () {
     await this.rc.get('/restapi/v1.0/account/~/extension/~')
     return true
   } catch (e) {
-    if (!e.response) {
+    if (!e.data) {
       throw e
     }
-    const errorCode = e.response.data.errorCode
+    const errorCode = e.data.errorCode
     if (errorCode === 'OAU-232' || errorCode === 'CMN-405') {
       await this.destroy()
       console.log(`Bot user ${this.id} had been deleted`)
@@ -94,7 +94,7 @@ Bot.prototype.setupWebHook = async function () {
       })
       done = true
     } catch (e) {
-      const errorCode = e.response.data.errorCode
+      const errorCode = e.data.errorCode
       if (errorCode === 'SUB-406') {
         await delay(10000)
         continue
