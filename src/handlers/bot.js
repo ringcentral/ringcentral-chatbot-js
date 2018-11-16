@@ -1,9 +1,5 @@
 import Bot from '../models/Bot'
-import commandHandler from './command'
-
-export const groupJoined = async message => {
-  console.log('The bot joins a new chat group')
-}
+import Service from '../models/Service'
 
 export const postAdded = async message => {
   console.log('The bot received a new message')
@@ -24,21 +20,21 @@ export const postAdded = async message => {
   }
   let text = message.body.text
   text = text.replace(/!\[:Person\]\(\d+\)/g, ' ').trim()
-  const command = text.split(/\s+/)[0]
-  const args = text.split(/\s+(.+)/)[1]
-  let replies = await commandHandler(command, args, { botId, groupId, userId })
-  if (replies) {
-    if (!Array.isArray(replies)) {
-      replies = [replies]
-    }
-    for (const reply of replies) {
-      await bot.sendMessage(groupId, reply)
-    }
-  }
+
+  return { text, group, bot, userId }
 }
 
 export const deleted = async message => {
-  console.log(`Bot user ${message.body.extensionId} has been deleted`)
-  const bot = await Bot.findByPk(message.body.extensionId)
+  const botId = message.body.extensionId
+  console.log(`Bot user ${botId} has been deleted`)
+
+  // delete services related to the bot
+  const services = await Service.findAll({ botId })
+  for (const service of services) {
+    await service.destroy()
+  }
+
+  // delete the bot
+  const bot = await Bot.findByPk(botId)
   await bot.destroy()
 }

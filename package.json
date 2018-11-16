@@ -1,6 +1,6 @@
 {
   "name": "ringcentral-chatbot",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "license": "MIT",
   "scripts": {
     "test": "cp .env.test .env && node -r dotenv/config ./node_modules/.bin/jest",
@@ -13,10 +13,7 @@
   },
   "dependencies": {
     "aws-sdk": "^2.355.0",
-    "cron-parser": "^2.7.1",
     "express": "^4.16.4",
-    "moment-timezone": "^0.5.23",
-    "pg": "^7.6.1",
     "ringcentral-js-concise": "^0.6.2",
     "sequelize": "^4.41.2",
     "serverless-http": "^1.8.0",
