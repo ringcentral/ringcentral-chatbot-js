@@ -30,7 +30,7 @@ app.post('/webhook', async (req, res) => {
         break
     }
   }
-  res.header('validation-token', req.header('validation-token'))
+  res.header('Validation-Token', req.header('Validation-Token'))
   res.send('')
 })
 
