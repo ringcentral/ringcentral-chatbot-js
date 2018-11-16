@@ -29,7 +29,7 @@ export const deleted = async message => {
   console.log(`Bot user ${botId} has been deleted`)
 
   // delete services related to the bot
-  const services = await Service.findAll({ botId })
+  const services = await Service.findAll({ where: { botId } })
   for (const service of services) {
     await service.destroy()
   }

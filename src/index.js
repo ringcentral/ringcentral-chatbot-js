@@ -36,9 +36,7 @@ if (port) { // express.js
 }
 
 module.exports.crontab = async (event, content, callback) => {
-  const services = await Service.findAll({
-    name: 'Crontab'
-  })
+  const services = await Service.findAll({ where: { name: 'Crontab' } })
   for (const service of services) {
     const interval = cronParser.parseExpression(service.data.expression, { utc: true })
     const prevTimestamp = interval.prev()._date
