@@ -1,5 +1,4 @@
 import Bot from '../models/Bot'
-import Service from '../models/Service'
 
 export const postAdded = async message => {
   console.log('The bot received a new message')
@@ -27,14 +26,6 @@ export const postAdded = async message => {
 export const deleted = async message => {
   const botId = message.body.extensionId
   console.log(`Bot user ${botId} has been deleted`)
-
-  // delete services related to the bot
-  const services = await Service.findAll({ where: { botId } })
-  for (const service of services) {
-    await service.destroy()
-  }
-
-  // delete the bot
   const bot = await Bot.findByPk(botId)
-  await bot.destroy()
+  await bot.remove()
 }

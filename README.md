@@ -68,6 +68,9 @@ I think we can just create a OAuth plugin for Bot Framework . Such as BotBuilder
 
 ## Todo
 
+- Bot cascade delete Service
+    - not good, because we need to add hooks
+    - use RxJS is a better idea
 - Create a website to auto generate code for developer to download
     - let developer select what he wants to do, what programming language to use, and finally generate the code for him
 - Demo chatbots

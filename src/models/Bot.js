@@ -3,6 +3,7 @@ import RingCentral from 'ringcentral-js-concise'
 import delay from 'timeout-as-promise'
 
 import sequelize from './sequelize'
+import Service from './Service'
 
 const Bot = sequelize.define('bot', {
   id: {
@@ -59,7 +60,7 @@ Bot.prototype.check = async function () {
     }
     const errorCode = e.data.errorCode
     if (errorCode === 'OAU-232' || errorCode === 'CMN-405') {
-      await this.destroy()
+      await this.remove()
       console.log(`Bot user ${this.id} had been deleted`)
       return false
     }
@@ -111,6 +112,14 @@ Bot.prototype.sendMessage = async function (groupId, messageObj) {
 Bot.prototype.getGroup = async function (groupId) {
   const r = await this.rc.get(`/restapi/v1.0/glip/groups/${groupId}`)
   return r.data
+}
+
+Bot.prototype.remove = async function () {
+  const services = await Service.findAll({ where: { botId: this.id } })
+  for (const service of services) {
+    await service.destroy()
+  }
+  await this.destroy()
 }
 
 export default Bot
