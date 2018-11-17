@@ -4,12 +4,10 @@
   "license": "MIT",
   "scripts": {
     "test": "cp .env.test .env && node -r dotenv/config ./node_modules/.bin/jest",
-    "dev": "cp .env.dev .env && node -r @babel/register -r dotenv/config src/index.js",
-    "ngrok": "ngrok http -region eu 3000",
-    "build": "babel src --watch --out-dir dist --source-maps",
-    "package": "sls package",
+    "build": "babel src --out-dir dist --source-maps",
     "deploy": "~/.okta/aws-token && AWS_PROFILE=524621635179/okta-full-access-no-iam/tyler.liu_source sls deploy --stage prod",
-    "logs": "AWS_PROFILE=524621635179/okta-full-access-no-iam/tyler.liu_source npx sls logs -f app --stage prod -t"
+    "logs": "AWS_PROFILE=524621635179/okta-full-access-no-iam/tyler.liu_source npx sls logs -f app --stage prod -t",
+    "prepublishOnly": "yarn test && yarn build"
   },
   "dependencies": {
     "aws-sdk": "^2.357.0",
@@ -27,8 +25,8 @@
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^23.6.0",
     "dotenv": "^6.1.0",
+    "husky": "^1.1.4",
     "jest": "^23.6.0",
-    "ngrok": "^3.1.0",
     "serverless": "^1.33.1",
     "sqlite3": "^4.0.4",
     "standard": "^12.0.1",
