@@ -2,6 +2,10 @@ import Bot from '../models/Bot'
 
 export const postAdded = async message => {
   console.log('The bot received a new message')
+  let text = message.body.text
+  if (!text) {
+    return // not a text message
+  }
   const botId = message.ownerId
   const userId = message.body.creatorId
   if (botId === userId) {
@@ -17,9 +21,7 @@ export const postAdded = async message => {
   )) {
     return
   }
-  let text = message.body.text
   text = text.replace(/!\[:Person\]\(\d+\)/g, ' ').trim()
-
   return { text, group, bot, userId }
 }
 
@@ -28,4 +30,5 @@ export const deleted = async message => {
   console.log(`Bot user ${botId} has been deleted`)
   const bot = await Bot.findByPk(botId)
   await bot.remove()
+  return bot
 }

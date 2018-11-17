@@ -21,18 +21,19 @@ app.post('/webhook', async (req, res) => {
   if (body) {
     switch (body.eventType) {
       case 'Delete':
-        await deleted(message)
+        const bot = await deleted(message)
+        app.$.next({ type: 'BotRemoved', bot })
         break
       case 'PostAdded':
         const result = await postAdded(message)
         if (result) {
-          app.$.next({ type: 'Message4Bot', message: result })
+          app.$.next({ type: 'Message4Bot', ...result })
         }
         break
       default:
         break
     }
-    app.$.next({ type: body.eventType, message })
+    app.$.next({ type: `WebHook_Event_${body.eventType}`, message })
   }
   res.header('Validation-Token', req.header('Validation-Token'))
   res.send('')
