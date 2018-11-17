@@ -3,11 +3,13 @@ import express from 'express'
 import botApp from './bot'
 import adminApp from './admin'
 
-const app = express()
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-app.use('/admin', adminApp)
-app.use('/bot', botApp)
+const createApp = handle => {
+  const app = express()
+  app.use(express.json())
+  app.use(express.urlencoded({ extended: true }))
+  app.use('/admin', adminApp(handle))
+  app.use('/bot', botApp(handle))
+  return app
+}
 
-app.$ = botApp.$
-export default app
+export default createApp
