@@ -1,6 +1,6 @@
 {
   "name": "ringcentral-chatbot",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "license": "MIT",
   "scripts": {
     "test": "cp .env.test .env && node -r dotenv/config ./node_modules/.bin/jest",

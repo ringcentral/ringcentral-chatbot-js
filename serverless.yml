@@ -1,7 +1,7 @@
 service:
   name: ringcentral-chatbot-js
 provider:
-  stage: ${opt:stage, 'dev'}
+  stage: ${opt:stage, 'prod'}
   name: aws
   runtime: nodejs8.10
   region: us-east-1
