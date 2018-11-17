@@ -9,5 +9,5 @@ app.use(express.urlencoded({ extended: true }))
 app.use('/admin', adminApp)
 app.use('/bot', botApp)
 
-app.bot = botApp.bot
+app.$ = botApp.$
 export default app

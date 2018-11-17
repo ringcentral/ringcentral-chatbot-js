@@ -1,18 +1,16 @@
 import express from 'express'
-import EventEmitter from 'events'
+import { Subject } from 'rxjs'
 
 import Bot from '../models/Bot'
 import { deleted, postAdded } from '../handlers/bot'
 
 const app = express()
-
-class BotEventEmitter extends EventEmitter {}
-const botEventEmitter = new BotEventEmitter()
+app.$ = new Subject()
 
 app.all('/oauth', async (req, res) => {
   const bot = await Bot.init({ code: req.query.code, token: req.body })
   await bot.setupWebHook() // this might take a while, depends on when the bot user is ready
-  botEventEmitter.emit('BotAdded', bot)
+  app.$.next({ type: 'BotAdded', bot })
   res.send('')
 })
 
@@ -28,17 +26,16 @@ app.post('/webhook', async (req, res) => {
       case 'PostAdded':
         const result = await postAdded(message)
         if (result) {
-          botEventEmitter.emit('Message4Bot', result)
+          app.$.next({ type: 'Message4Bot', message: result })
         }
         break
       default:
         break
     }
-    botEventEmitter.emit(body.eventType, message)
+    app.$.next({ type: body.eventType, message })
   }
   res.header('Validation-Token', req.header('Validation-Token'))
   res.send('')
 })
 
-app.bot = botEventEmitter
 export default app
