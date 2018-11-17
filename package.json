@@ -3,10 +3,8 @@
   "version": "0.2.2",
   "license": "MIT",
   "scripts": {
-    "test": "cp .env.test .env && node -r dotenv/config ./node_modules/.bin/jest",
+    "test": "RINGCENTRAL_CHATBOT_DATABASE_CONNECTION_URI=sqlite:// jest",
     "build": "rm -rf dist && babel src --out-dir dist --source-maps",
-    "deploy": "~/.okta/aws-token && AWS_PROFILE=524621635179/okta-full-access-no-iam/tyler.liu_source sls deploy --stage prod",
-    "logs": "AWS_PROFILE=524621635179/okta-full-access-no-iam/tyler.liu_source sls logs -f app --stage prod -t",
     "prepublishOnly": "yarn test && yarn build"
   },
   "dependencies": {
@@ -14,7 +12,6 @@
     "express": "^4.16.4",
     "ringcentral-js-concise": "^0.7.0",
     "sequelize": "^4.41.2",
-    "serverless-http": "^1.8.0",
     "timeout-as-promise": "^1.0.0"
   },
   "devDependencies": {
@@ -24,10 +21,8 @@
     "@babel/register": "^7.0.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^23.6.0",
-    "dotenv": "^6.1.0",
     "husky": "^1.1.4",
     "jest": "^23.6.0",
-    "serverless": "^1.33.1",
     "sqlite3": "^4.0.4",
     "standard": "^12.0.1",
     "yarn-upgrade-all": "^0.5.0"

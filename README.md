@@ -1,31 +1,15 @@
-## RingCentral Chatbot Framework for JavaScript
+# RingCentral Chatbot Framework for JavaScript
 
+## Demo bots
 
-## Dev setup
-
-```
-yarn install
-cp .sample.env .env.dev
-edit .env.dev
-yarn dev
-```
-
-
-## Deploy to AWS Lambda
-
-```
-cp .sample.env.yml .env.yml
-edit .env.yml
-yarn build
-yarn deploy
-```
+- [Glip Crontab Chatbot](https://github.com/tylerlong/glip-crontab-chatbot)
 
 
 ## Implemented features
 
 - Bot token management
 - Setup bot WebHook
-- Glip message handlers
+- Remove bot
 - Support AWS Lambda
 
 
@@ -68,12 +52,12 @@ I think we can just create a OAuth plugin for Bot Framework . Such as BotBuilder
 
 ## Todo
 
-- Bot cascade delete Service
-    - not good, because we need to add hooks
-    - use RxJS is a better idea
+- Allow user to update chatbot images and name
 - Create a website to auto generate code for developer to download
     - let developer select what he wants to do, what programming language to use, and finally generate the code for him
 - Demo chatbots
+    - ping bot
+        - reply "pong" when received "ping"
     - cron bot
         - allow you to setup cron jobs as reminders
     - survey bot
