@@ -37,6 +37,8 @@ const createApp = handle => {
     res.header('Validation-Token', req.header('Validation-Token'))
     res.send('')
   })
+
+  return app
 }
 
 export default createApp

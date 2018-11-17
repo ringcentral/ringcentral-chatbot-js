@@ -1,10 +1,10 @@
 {
   "name": "ringcentral-chatbot",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "license": "MIT",
   "scripts": {
     "test": "cp .env.test .env && node -r dotenv/config ./node_modules/.bin/jest",
-    "build": "babel src --out-dir dist --source-maps",
+    "build": "rm -rf dist && babel src --out-dir dist --source-maps",
     "deploy": "~/.okta/aws-token && AWS_PROFILE=524621635179/okta-full-access-no-iam/tyler.liu_source sls deploy --stage prod",
     "logs": "AWS_PROFILE=524621635179/okta-full-access-no-iam/tyler.liu_source npx sls logs -f app --stage prod -t",
     "prepublishOnly": "yarn test && yarn build"
