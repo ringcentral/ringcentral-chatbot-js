@@ -106,7 +106,8 @@ Bot.prototype.setupWebHook = async function () {
 }
 
 Bot.prototype.sendMessage = async function (groupId, messageObj) {
-  await this.rc.post(`/restapi/v1.0/glip/groups/${groupId}/posts`, messageObj)
+  const r = await this.rc.post(`/restapi/v1.0/glip/groups/${groupId}/posts`, messageObj)
+  return r.data
 }
 
 Bot.prototype.getGroup = async function (groupId) {

@@ -9,7 +9,7 @@ const createApp = handle => {
   app.all('/oauth', async (req, res) => {
     const bot = await Bot.init({ code: req.query.code, token: req.body })
     await bot.setupWebHook() // this might take a while, depends on when the bot user is ready
-    handle({ type: 'BotAdded', bot })
+    await handle({ type: 'BotAdded', bot })
     res.send('')
   })
 
@@ -21,18 +21,18 @@ const createApp = handle => {
       switch (body.eventType) {
         case 'Delete':
           const bot = await deleted(message)
-          handle({ type: 'BotRemoved', bot })
+          await handle({ type: 'BotRemoved', bot })
           break
         case 'PostAdded':
           const result = await postAdded(message)
           if (result) {
-            handle({ type: 'Message4Bot', ...result })
+            await handle({ type: 'Message4Bot', ...result })
           }
           break
         default:
           break
       }
-      handle({ type: `WebHook_Event_${body.eventType}`, message })
+      await handle({ type: `WebHook_Event_${body.eventType}`, message })
     }
     res.header('Validation-Token', req.header('Validation-Token'))
     res.send('')
