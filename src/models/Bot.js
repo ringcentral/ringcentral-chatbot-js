@@ -73,7 +73,11 @@ Bot.prototype.ensureWebHook = async function () {
   const r = await this.rc.get('/restapi/v1.0/subscription')
   for (const sub of r.data.records) {
     if (sub.deliveryMode.address === process.env.RINGCENTRAL_CHATBOT_SERVER + '/bot/webhook') {
-      return
+      if (sub.status === 'Blacklisted') {
+        await this.rc.delete(`/restapi/v1.0/subscription/${sub.id}`)
+      } else {
+        return
+      }
     }
   }
   await this.setupWebHook()
