@@ -23,7 +23,8 @@ export const postAdded = async message => {
   )) {
     return
   }
-  text = text.replace(/!\[:Person\]\(\d+\)/g, ' ').trim()
+  const regex = new RegExp(`!\\[:Person\\]\\(${bot.id}\\)`)
+  text = text.replace(regex, ' ').trim()
   if (text.startsWith('__rename__')) {
     await bot.rename(text.substring(10).trim())
     return
