@@ -1,6 +1,7 @@
 import Sequelize from 'sequelize'
 import RingCentral from 'ringcentral-js-concise'
 import delay from 'timeout-as-promise'
+import FormData from 'form-data'
 
 import sequelize from './sequelize'
 import Service from './Service'
@@ -126,6 +127,14 @@ Bot.prototype.remove = async function () {
 Bot.prototype.rename = async function (newName) {
   await this.rc.put('/restapi/v1.0/account/~/extension/~', {
     contact: { firstName: newName }
+  })
+}
+
+Bot.prototype.setAvatar = async function (data, name) {
+  const formData = new FormData()
+  formData.append('image', data, name)
+  await this.rc.put('/restapi/v1.0/account/~/extension/~/profile-image', formData, {
+    headers: formData.getHeaders()
   })
 }
 

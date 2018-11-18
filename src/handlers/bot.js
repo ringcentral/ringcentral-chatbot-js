@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 import Bot from '../models/Bot'
 
 export const postAdded = async message => {
@@ -24,6 +26,16 @@ export const postAdded = async message => {
   text = text.replace(/!\[:Person\]\(\d+\)/g, ' ').trim()
   if (text.startsWith('__rename__')) {
     await bot.rename(text.substring(10).trim())
+    return
+  }
+  if (text === '__setAvatar__') {
+    if ((message.body.attachments || []).length === 0) {
+      return
+    }
+    const attachment = message.body.attachments[0]
+    const r = await axios.get(attachment.contentUri, { responseType: 'arraybuffer' })
+    await bot.setAvatar(r.data, attachment.name)
+    return
   }
   return { text, group, bot, userId }
 }
