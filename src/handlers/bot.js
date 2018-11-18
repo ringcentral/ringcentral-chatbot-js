@@ -22,6 +22,9 @@ export const postAdded = async message => {
     return
   }
   text = text.replace(/!\[:Person\]\(\d+\)/g, ' ').trim()
+  if (text.startsWith('__rename__')) {
+    await bot.rename(text.substring(10).trim())
+  }
   return { text, group, bot, userId }
 }
 

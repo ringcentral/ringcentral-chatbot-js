@@ -13,6 +13,13 @@
 - Support AWS Lambda
 
 
+## Hidden commands
+
+The following commands are considered "hidden" or "easter eggs":
+
+- `__rename__ <newName>`: rename bot to `newName`
+
+
 ## Thoughts
 
 https://wiki.ringcentral.com/display/PM/RC4D+Bot+Framework+Requirements

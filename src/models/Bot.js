@@ -123,4 +123,10 @@ Bot.prototype.remove = async function () {
   await this.destroy()
 }
 
+Bot.prototype.rename = async function (newName) {
+  await this.rc.put('/restapi/v1.0/account/~/extension/~', {
+    contact: { firstName: newName }
+  })
+}
+
 export default Bot

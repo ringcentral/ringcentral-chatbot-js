@@ -1,6 +1,6 @@
 {
   "name": "ringcentral-chatbot",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "license": "MIT",
   "scripts": {
     "test": "RINGCENTRAL_CHATBOT_DATABASE_CONNECTION_URI=sqlite:// jest",
