@@ -50,3 +50,7 @@ The following commands are considered "hidden" or "easter eggs":
     - AWS Lambda is stateless and it won't keep a background runner
     - So if your code is async, DO remember to `await`. Otherwise that code will not be executed before Lambda invocation terminates
     - I forgot to `await`, a weird phenomenon was: whenver I issued a command, I always got reply of previous command
+- AWS Lambda global code dead-lock issue
+    - Do NOT invoke lambda functions in global code outside of handlers
+    - I tried once and it seemed to case dead-lock. Lots of requests which causes 429 error and database connection exhausted
+        - In global code I did `axio.put('https://<bot-server>/admin/maintain')` and it caused dead-lock
