@@ -12,8 +12,8 @@ const createApp = handle => {
     res.send('')
   })
 
-  // "reboot": remove dead bots from database, ensure live bots have WebHooks
-  app.put('/reboot', async (req, res) => {
+  // "maintain": remove dead bots from database, ensure live bots have WebHooks
+  app.put('/maintain', async (req, res) => {
     const bots = await Bot.findAll()
     for (const bot of bots) {
       if (await bot.check()) {
