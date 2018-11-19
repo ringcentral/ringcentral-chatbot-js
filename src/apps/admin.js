@@ -21,6 +21,10 @@ const createApp = handle => {
         await bot.ensureWebHook()
       }
     }
+    const services = await Service.findAll()
+    for (const service of services) {
+      await service.check()
+    }
     res.send('')
   })
 

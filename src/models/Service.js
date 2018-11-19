@@ -1,6 +1,7 @@
 import Sequelize from 'sequelize'
 
 import sequelize from './sequelize'
+import Bot from './Bot'
 
 const Service = sequelize.define('service', {
   id: { // service ID
@@ -24,5 +25,21 @@ const Service = sequelize.define('service', {
     type: Sequelize.JSON
   }
 })
+
+Service.prototype.check = async function () {
+  const services = await Service.findAll()
+  for (const service of services) {
+    const bot = Bot.findByPk(service.botId)
+    if (!bot) {
+      service.destroy()
+      continue
+    }
+    const group = await bot.getGroup(service.groupId)
+    if (!group || group.members.indexOf(bot.id) === -1) {
+      service.destroy()
+      continue
+    }
+  }
+}
 
 export default Service

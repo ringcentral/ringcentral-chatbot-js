@@ -116,8 +116,15 @@ Bot.prototype.sendMessage = async function (groupId, messageObj) {
 }
 
 Bot.prototype.getGroup = async function (groupId) {
-  const r = await this.rc.get(`/restapi/v1.0/glip/groups/${groupId}`)
-  return r.data
+  try {
+    const r = await this.rc.get(`/restapi/v1.0/glip/groups/${groupId}`)
+    return r.data
+  } catch (e) {
+    if (e.status === 404) {
+      return undefined
+    }
+    throw e
+  }
 }
 
 Bot.prototype.remove = async function () {
