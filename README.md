@@ -29,8 +29,6 @@ The following commands are considered "hidden" or "easter eggs":
 - Demo chatbots
     - ping bot
         - reply "pong" when received "ping"
-    - cron bot
-        - allow you to setup cron jobs as reminders
     - RC Assistant
         - Very important bot for user to use RingCentral service
     - survey bot
