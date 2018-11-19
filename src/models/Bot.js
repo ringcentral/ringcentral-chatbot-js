@@ -4,9 +4,9 @@ import delay from 'timeout-as-promise'
 import FormData from 'form-data'
 
 import sequelize from './sequelize'
-import Service from './Service'
+import { Service } from './Service'
 
-const Bot = sequelize.define('bot', {
+export const Bot = sequelize.define('bot', {
   id: {
     type: Sequelize.STRING,
     primaryKey: true
@@ -164,5 +164,3 @@ Bot.prototype.getSubscriptions = async function () {
   const r = await this.rc.get('/restapi/v1.0/subscription')
   return r.data.records
 }
-
-export default Bot

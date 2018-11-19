@@ -1,7 +1,6 @@
 /* eslint-env jest */
 import sequelize from '../src/models/sequelize'
-import Bot from '../src/models/Bot'
-import Service from '../src/models/Service'
+import { Bot, Service } from '../src/models'
 
 describe('models', () => {
   test('default', async () => {

@@ -1,9 +1,9 @@
 import Sequelize from 'sequelize'
 
 import sequelize from './sequelize'
-import Bot from './Bot'
+import { Bot } from './Bot'
 
-const Service = sequelize.define('service', {
+export const Service = sequelize.define('service', {
   id: { // service ID
     type: Sequelize.INTEGER,
     autoIncrement: true,
@@ -41,5 +41,3 @@ Service.prototype.check = async function () {
     }
   }
 }
-
-export default Service

@@ -1,7 +1,6 @@
 import express from 'express'
 
-import Bot from '../models/Bot'
-import Service from '../models/Service'
+import { Bot, Service } from '../models'
 
 const createApp = handle => {
   const app = express()
@@ -28,6 +27,7 @@ const createApp = handle => {
     res.send('')
   })
 
+  // provide administrator with diagnostic information for troubleshooting
   app.get('/diagnostic', async (req, res) => {
     const bots = await Bot.findAll()
     let result = ''

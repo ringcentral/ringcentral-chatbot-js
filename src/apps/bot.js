@@ -1,7 +1,7 @@
 import express from 'express'
 
-import Bot from '../models/Bot'
-import { deleted, postAdded, groupLeft } from '../handlers/bot'
+import { Bot } from '../models'
+import { botDeleted, postAdded, groupLeft } from '../handlers'
 
 const createApp = handle => {
   const app = express()
@@ -20,7 +20,7 @@ const createApp = handle => {
     if (body) {
       switch (body.eventType) {
         case 'Delete':
-          const bot = await deleted(message)
+          const bot = await botDeleted(message)
           await handle({ type: 'BotRemoved', bot })
           break
         case 'PostAdded':
