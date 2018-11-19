@@ -5,13 +5,51 @@
 - [Glip Crontab Chatbot](https://github.com/tylerlong/glip-crontab-chatbot)
 
 
-## Implemented features
+## Supported features
 
 - Bot token management
-- Setup bot WebHook
-- Remove bot
+- Bot WebHook management
+- Remove & re-add bot
 - Deploy to AWS Lambda
 - Update bot name and avatar
+- Bot join & leave group
+
+
+## Setup database
+
+The first time you setup the bot, the database is empty, you need to create tables.
+
+There is an easy way:
+
+```
+HTTP PUT https://<bot-server>/admin/setup-database
+```
+
+
+## Maintain
+
+"Maintain" is useful in the following cases:
+
+- If for reason bot server changed, you need to re-setup WebHooks
+- You bot server was down for quite a while and your WebHooks have been blacklisted
+- There is orphan data in database
+
+You can "maintain" to resolve the issues above:
+
+```
+HTTP PUT https://<bot-server>/admin/maintain
+```
+
+It is recommended that you create a cron job to run this command daily.
+
+
+## Diagnostic
+
+Sometimes there are issues and you don't know what happened. This framework provides an interface for diagnostic:
+
+```
+HTTP GET https://<bot-server>/admin/diagnostic
+```
 
 
 ## Hidden commands
@@ -19,11 +57,12 @@
 The following commands are considered "hidden" or "easter eggs":
 
 - `__rename__ <newName>`: rename bot to `newName`
-- A single message with text `__setAvatar__` and an attached image file: set bot avatar to the attached image
+- A message with text `__setAvatar__` and an attached image file: set bot avatar to the attached image
 
 
 ## Todo
 
+- Protect `/admin/xxxxx` routes
 - Create a website to auto generate code for developer to download
     - let developer select what he wants to do, what programming language to use, and finally generate the code for him
 - Demo chatbots
