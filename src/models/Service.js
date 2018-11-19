@@ -27,13 +27,13 @@ export const Service = sequelize.define('service', {
 })
 
 Service.prototype.check = async function () {
-  const bot = Bot.findByPk(this.botId)
+  const bot = await Bot.findByPk(this.botId)
   if (!bot) {
-    this.destroy()
+    await this.destroy()
     return
   }
   const group = await bot.getGroup(this.groupId)
   if (!group || group.members.indexOf(bot.id) === -1) {
-    this.destroy()
+    await this.destroy()
   }
 }
