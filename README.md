@@ -24,6 +24,7 @@ The following commands are considered "hidden" or "easter eggs":
 
 ## Todo
 
+- Handle group removed event
 - Create a website to auto generate code for developer to download
     - let developer select what he wants to do, what programming language to use, and finally generate the code for him
 - Demo chatbots
