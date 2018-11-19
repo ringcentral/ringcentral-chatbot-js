@@ -142,4 +142,15 @@ Bot.prototype.setAvatar = async function (data, name) {
   })
 }
 
+Bot.prototype.getUser = async function (userId) {
+  let r = await this.rc.get(`/restapi/v1.0/glip/persons/${userId}`)
+  const glip = r.data
+  let rc
+  if (!glip.id.startsWith('glip-')) {
+    r = await this.rc.get(`/restapi/v1.0/account/${glip.companyId}/extension/${glip.id}`)
+    rc = r.data
+  }
+  return { glip, rc }
+}
+
 export default Bot
