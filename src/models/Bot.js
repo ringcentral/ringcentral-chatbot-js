@@ -153,4 +153,9 @@ Bot.prototype.getUser = async function (userId) {
   return { glip, rc }
 }
 
+Bot.prototype.getSubscriptions = async function () {
+  const r = await this.rc.get('/restapi/v1.0/subscription')
+  return r.data.records
+}
+
 export default Bot

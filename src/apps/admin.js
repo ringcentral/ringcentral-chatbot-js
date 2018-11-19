@@ -24,6 +24,17 @@ const createApp = handle => {
     res.send('')
   })
 
+  app.get('/diagnostic', async (req, res) => {
+    const bots = await Bot.findAll()
+    let result = ''
+    for (const bot of bots) {
+      result += `<pre>${JSON.stringify(bot, null, 2)}</pre>`
+      const subscriptions = await bot.getSubscriptions()
+      result += `<pre>${JSON.stringify(subscriptions, null, 2)}</pre>`
+    }
+    res.send(result)
+  })
+
   return app
 }
 
