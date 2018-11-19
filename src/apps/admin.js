@@ -28,9 +28,9 @@ const createApp = handle => {
     const bots = await Bot.findAll()
     let result = ''
     for (const bot of bots) {
-      result += `<pre>${JSON.stringify(bot, null, 2)}</pre>`
+      result += `<pre>\n${JSON.stringify(bot, null, 2)}\n</pre>\n`
       const subscriptions = await bot.getSubscriptions()
-      result += `<pre>${JSON.stringify(subscriptions, null, 2)}</pre>`
+      result += `<pre>\n${JSON.stringify(subscriptions, null, 2)}\n</pre>\n`
     }
     res.send(result)
   })
