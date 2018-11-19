@@ -3,6 +3,12 @@
 ## Demo bots
 
 - [Glip Crontab Chatbot](https://github.com/tylerlong/glip-crontab-chatbot)
+    - Allow Glip users to create cron jobs to send notifications
+
+
+## Philosophy
+
+- Let developers focus on business logic instead of RingCentral/Glip Platform implementation details
 
 
 ## Supported features
