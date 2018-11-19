@@ -1,7 +1,7 @@
 import express from 'express'
 
 import Bot from '../models/Bot'
-import { deleted, postAdded } from '../handlers/bot'
+import { deleted, postAdded, groupLeft } from '../handlers/bot'
 
 const createApp = handle => {
   const app = express()
@@ -28,6 +28,9 @@ const createApp = handle => {
           if (result) {
             await handle({ type: 'Message4Bot', ...result })
           }
+          break
+        case 'GroupLeft':
+          await groupLeft(message)
           break
         default:
           break

@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 import Bot from '../models/Bot'
+import Service from '../models/Service'
 
 export const postAdded = async message => {
   console.log('The bot received a new message')
@@ -47,4 +48,10 @@ export const deleted = async message => {
   const bot = await Bot.findByPk(botId)
   await bot.remove()
   return bot
+}
+
+export const groupLeft = async message => {
+  const botId = message.ownerId
+  const groupId = message.body.id
+  await Service.destroy({ where: { botId, groupId } })
 }
