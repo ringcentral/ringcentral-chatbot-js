@@ -1,4 +1,4 @@
-# RingCentral Chatbot Framework for JavaScript
+# ringcentral-chatbot framework for JavaScript
 
 ## Demo bots
 
@@ -9,6 +9,26 @@
 ## Philosophy
 
 - Let developers focus on business logic instead of RingCentral/Glip Platform implementation details
+
+
+## Quick start
+
+If you want to deploy your bot as an Express.js service, please [read this tutorial](https://github.com/tylerlong/glip-ping-chatbot/tree/express).
+
+If you want to deploy your chatbot to AWS Lambda, please [read this tutorial](https://github.com/tylerlong/glip-ping-chatbot/tree/lambda).
+
+
+## Create a RingCentral app
+
+Create a new RingCentral app here: https://developer.ringcentral.com with the following information:
+
+- Application Name: your app's name
+- Description: your app's description
+- Application Type: Public
+- Platform Type: Server/Bot
+- Carrier: Check all
+- Permission Needed: Glip, WebHook Subscriptions, Read Accounts, Edit Extensions
+- OAuth Redreict URI: https://<chatbot-server>/bot/oauth
 
 
 ## Supported features
