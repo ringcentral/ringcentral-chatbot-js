@@ -13,7 +13,7 @@
 
 ## Quick start
 
-If you want to deploy your bot as an Express.js service, please [read this tutorial](https://github.com/tylerlong/glip-ping-chatbot/tree/express).
+If you want to deploy your bot as an Express.js service, please [read this tutorial](https://github.com/tylerlong/glip-ping-chatbot/tree/express) or [watch this video](https://youtu.be/CR66cwHvsOI).
 
 If you want to deploy your chatbot to AWS Lambda, please [read this tutorial](https://github.com/tylerlong/glip-ping-chatbot/tree/lambda).
 
