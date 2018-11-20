@@ -1,11 +1,5 @@
 # ringcentral-chatbot framework for JavaScript
 
-## Demo bots
-
-- [Glip Crontab Chatbot](https://github.com/tylerlong/glip-crontab-chatbot)
-    - Allow Glip users to create cron jobs to send notifications
-
-
 ## Philosophy
 
 - Let developers focus on business logic instead of RingCentral/Glip Platform implementation details
@@ -18,6 +12,12 @@ If you want to deploy your bot as an Express.js service, please [read this tutor
 If you want to deploy your chatbot to AWS Lambda, please [read this tutorial](https://github.com/tylerlong/glip-ping-chatbot/tree/lambda).
 
 
+## Advanced Demo bots
+
+- [Glip Crontab Chatbot](https://github.com/tylerlong/glip-crontab-chatbot)
+    - Allow Glip users to create cron jobs to send notifications
+
+
 ## Create a RingCentral app
 
 Create a new RingCentral app here: https://developer.ringcentral.com with the following information:
@@ -28,7 +28,7 @@ Create a new RingCentral app here: https://developer.ringcentral.com with the fo
 - Platform Type: Server/Bot
 - Carrier: Check all
 - Permission Needed: Glip, WebHook Subscriptions, Read Accounts, Edit Extensions
-- OAuth Redreict URI: https://<chatbot-server>/bot/oauth
+- OAuth Redreict URI: `https://<chatbot-server>/bot/oauth`
 
 
 ## Supported features
