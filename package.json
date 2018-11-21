@@ -1,6 +1,6 @@
 {
   "name": "ringcentral-chatbot",
-  "version": "0.3.6",
+  "version": "0.3.7",
   "license": "MIT",
   "scripts": {
     "test": "RINGCENTRAL_CHATBOT_DATABASE_CONNECTION_URI=sqlite:// jest",
@@ -12,7 +12,7 @@
     "axios": "^0.18.0",
     "express": "^4.16.4",
     "form-data": "^2.3.3",
-    "ringcentral-js-concise": "^0.7.0",
+    "ringcentral-js-concise": "^0.7.1",
     "sequelize": "^4.41.2",
     "timeout-as-promise": "^1.0.0"
   },
