@@ -5,7 +5,7 @@ const sequelize = new Sequelize(
   {
     operatorsAliases: false,
     define: {
-      timestamps: false
+      timestamps: true
     },
     logging: false
   }

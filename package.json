@@ -1,6 +1,6 @@
 {
   "name": "ringcentral-chatbot",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "license": "MIT",
   "scripts": {
     "test": "RINGCENTRAL_CHATBOT_DATABASE_CONNECTION_URI=sqlite:// jest",
@@ -25,6 +25,7 @@
     "babel-jest": "^23.6.0",
     "husky": "^1.1.4",
     "jest": "^23.6.0",
+    "ramda": "^0.26.0",
     "sqlite3": "^4.0.4",
     "standard": "^12.0.1",
     "yarn-upgrade-all": "^0.5.0"
