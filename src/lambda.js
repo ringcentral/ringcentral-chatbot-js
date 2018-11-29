@@ -8,6 +8,13 @@ export const createAsyncProxy = functionName => {
       InvocationType: 'Event',
       Payload: JSON.stringify(event)
     }, (error, data) => console.log(error, data))
-    callback(null, { statusCode: 200, body: '', headers: { 'Validation-Token': event.headers['Validation-Token'] } })
+    callback(null, {
+      statusCode: 200,
+      headers: {
+        'Validation-Token': event.headers['Validation-Token'],
+        'Content-Type': 'text/html'
+      },
+      body: '<!doctype><html><body><script>close()</script></body></html>'
+    })
   }
 }
