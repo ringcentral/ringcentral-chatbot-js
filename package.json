@@ -1,7 +1,8 @@
 {
   "name": "ringcentral-chatbot",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "license": "MIT",
+  "repository": "git@github.com:tylerlong/ringcentral-chatbot-js.git",
   "scripts": {
     "test": "RINGCENTRAL_CHATBOT_DATABASE_CONNECTION_URI=sqlite:// jest",
     "build": "rm -rf dist && babel src --out-dir dist --source-maps",
