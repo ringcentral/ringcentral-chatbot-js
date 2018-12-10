@@ -7,15 +7,16 @@
 
 ## Quick start
 
-If you want to deploy your bot as an Express.js service, please [read this tutorial](https://github.com/tylerlong/glip-ping-chatbot/tree/express) or [watch this video](https://youtu.be/CR66cwHvsOI).
-
-If you want to deploy your chatbot to AWS Lambda, please [read this tutorial](https://github.com/tylerlong/glip-ping-chatbot/tree/lambda).
+- If you want to create a Glip chatbot and deploy it to your own server, please [read this tutorial](https://github.com/tylerlong/glip-ping-chatbot/tree/express) or [watch this video](https://youtu.be/CR66cwHvsOI).
+- If you want to create a Glip chatbot and deploy it to AWS Lambda, please [read this tutorial](https://github.com/tylerlong/glip-ping-chatbot/tree/lambda) or [watch this video](https://youtu.be/JoEMXYmtn4Y).
 
 
 ## Advanced Demo bots
 
 - [Glip Crontab Chatbot](https://github.com/tylerlong/glip-crontab-chatbot)
     - Allow Glip users to create cron jobs to send notifications
+- [Glip RC Assistant Chatbot](https://github.com/tylerlong/rc-assistant)
+    - Allow Glip users to query/edit their RingCentral data via Glip.
 
 
 ## Create a RingCentral app
@@ -92,10 +93,6 @@ The following commands are considered "hidden" or "easter eggs":
 - Create a website to auto generate code for developer to download
     - let developer select what he wants to do, what programming language to use, and finally generate the code for him
 - Demo chatbots
-    - ping bot
-        - reply "pong" when received "ping"
-    - RC Assistant
-        - Very important bot for user to use RingCentral service
     - survey bot
         - create survey and aggregate result with ease.
     - RingCentral messages monitoring bot
