@@ -5,7 +5,9 @@ import adminApp from './admin'
 
 const createApp = (handle, skills = []) => {
   const mergedHandle = async (...args) => {
-    await handle(...args)
+    if (handle) {
+      await handle(...args)
+    }
     for (const skill of skills) {
       if (skill.handle) {
         await skill.handle(...args)
