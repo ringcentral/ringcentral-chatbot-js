@@ -13,6 +13,7 @@ const createApp = handle => {
   app.put('/setup-database', async (req, res) => {
     await Bot.sync()
     await Service.sync()
+    await handle({ type: 'SetupDatabase' })
     res.send('')
   })
 
@@ -28,6 +29,7 @@ const createApp = handle => {
     for (const service of services) {
       await service.check()
     }
+    await handle({ type: 'Maintain' })
     res.send('')
   })
 
