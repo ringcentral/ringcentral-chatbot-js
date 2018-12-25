@@ -1,9 +1,13 @@
 import express from 'express'
+import basicAuth from 'express-basic-auth'
 
 import { Bot, Service } from '../models'
 
 const createApp = handle => {
   const app = express()
+  app.use(basicAuth({ users: {
+    [process.env.RINGCENTRAL_CHATBOT_ADMIN_USERNAME]: process.env.RINGCENTRAL_CHATBOT_ADMIN_PASSWORD
+  } }))
 
   // create database tables if not exists
   app.put('/setup-database', async (req, res) => {
