@@ -7,7 +7,9 @@ const createApp = (handle, skills = []) => {
   const mergedHandle = async (...args) => {
     await handle(...args)
     for (const skill of skills) {
-      await skill.handle(...args)
+      if (skill.handle) {
+        await skill.handle(...args)
+      }
     }
   }
   const app = express()
@@ -15,6 +17,11 @@ const createApp = (handle, skills = []) => {
   app.use(express.urlencoded({ extended: true }))
   app.use('/admin', adminApp(mergedHandle))
   app.use('/bot', botApp(mergedHandle))
+  for (const skill of skills) {
+    if (skill.app) {
+      app.use('/', skill.app)
+    }
+  }
   return app
 }
 
