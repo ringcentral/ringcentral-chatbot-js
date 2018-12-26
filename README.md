@@ -51,7 +51,7 @@ The first time you setup the bot, the database is empty, you need to create tabl
 There is an easy way:
 
 ```
-HTTP PUT https://<bot-server>/admin/setup-database
+curl -X PUT -u admin:password https://<bot-server>/admin/setup-database
 ```
 
 
@@ -66,7 +66,7 @@ HTTP PUT https://<bot-server>/admin/setup-database
 You can "maintain" to resolve the issues above:
 
 ```
-HTTP PUT https://<bot-server>/admin/maintain
+curl -X PUT -u admin:password https://<bot-server>/admin/maintain
 ```
 
 It is recommended that you create a cron job to run this command daily.
@@ -77,7 +77,7 @@ It is recommended that you create a cron job to run this command daily.
 Sometimes there are issues and you don't know what happened. This framework provides an interface for diagnostic:
 
 ```
-HTTP GET https://<bot-server>/admin/diagnostic
+curl -X GET -u admin:password https://<bot-server>/admin/diagnostic
 ```
 
 
