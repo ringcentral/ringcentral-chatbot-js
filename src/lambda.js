@@ -17,7 +17,7 @@ export const createAsyncProxy = (functionName, filterApp) => {
           'Validation-Token': event.headers['Validation-Token'],
           'Content-Type': 'text/html'
         },
-        body: '<!doctype><html><body><script>close()</script></body></html>'
+        body: '<!doctype><html><body><script>close()</script><p>Please close this page</p></body></html>'
       })
     }
     if (!filterApp) {
