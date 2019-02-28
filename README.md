@@ -16,9 +16,16 @@
 - [Glip Crontab Chatbot](https://github.com/tylerlong/glip-crontab-chatbot)
     - Allow Glip users to create cron jobs to send notifications
     - [Try it](https://www.ringcentral.com/apps/glip-crontab-chatbot)
+    - By reading its source code, you will get how to handle messages from users and how to reply.
 - [Glip RC Assistant Chatbot](https://github.com/tylerlong/rc-assistant)
     - Allow Glip users to query/edit their RingCentral data via Glip.
     - [Try it](https://www.ringcentral.com/apps/glip-rc-assistant-chatbot)
+    - It is a demo for integrating Glip chatbot with RingCentral platform.
+- [Glip Google Drive Chatbot](https://github.com/tylerlong/glip-google-drive-chatbot)
+    - Allow Glip users to monitor their Google Drive events.
+    - [Try it](https://www.ringcentral.com/apps/glip-google-drive-chatbot)
+    - It is a demo for integrating Glip chatbot with a third party service (Google Drive)
+    - It is also a demo for chatbot skills
 
 
 ## Create a RingCentral app
