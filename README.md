@@ -182,13 +182,6 @@ Catch-all skill should be the last in the skills list
 
 - Create a website to auto generate code for developer to download
     - let developer select what he wants to do, what programming language to use, and finally generate the code for him
-- Demo chatbots
-    - survey bot
-        - create survey and aggregate result with ease.
-    - RingCentral messages monitoring bot
-        - monitor RingCentral messages
-    - Google drive notification
-        - monitor Google Drive folder/file changes
 
 
 ## Notes
