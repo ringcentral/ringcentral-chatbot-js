@@ -122,7 +122,7 @@ const handle = async event => {
   }
   return false // event not handled
 }
-const app = new express()
+const app = express()
 app.get('/hello', async (req, res) => {
   res.send('world')
 })
