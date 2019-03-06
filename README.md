@@ -118,7 +118,9 @@ const handle = async event => {
   const { type, text, group, bot } = event
   if (type === 'Message4Bot' && text === 'ping') {
     await bot.sendMessage(group.id, { text: 'pong' })
+    return true // event handled
   }
+  return false // event not handled
 }
 const app = new express()
 app.get('/hello', async (req, res) => {
@@ -143,6 +145,23 @@ const app = createApp(undefined, [
 ```
 
 `app` above is a chatbot app, and it has all the behaviors of `myCoolSkill`.
+
+#### "catch-all" skill
+
+You may need a catch-all skill
+
+```js
+const handle = async (event, handled) => {
+    if (!handled) {
+      console.log(`This is an unhandled event`)
+    } else {
+      // event has been handled by other skills already
+    }
+}
+const catchAllSkill = { handle }
+```
+
+Catch-all skill should be the last in the skills list
 
 
 ### Real projects

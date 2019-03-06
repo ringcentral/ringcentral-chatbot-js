@@ -4,13 +4,14 @@ import botApp from './bot'
 import adminApp from './admin'
 
 const createApp = (handle, skills = []) => {
-  const mergedHandle = async (...args) => {
+  const mergedHandle = async event => {
+    let handled = false
     if (handle) {
-      await handle(...args)
+      handled = await handle(event, handled)
     }
     for (const skill of skills) {
       if (skill.handle) {
-        await skill.handle(...args)
+        handled = handled || await skill.handle(event, handled)
       }
     }
   }
