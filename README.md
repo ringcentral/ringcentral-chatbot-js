@@ -30,15 +30,12 @@
 
 ## Create a RingCentral app
 
-Create a new RingCentral app here: https://developer.ringcentral.com with the following information:
 
-- Application Name: your app's name
-- Description: your app's description
-- Application Type: Public
-- Platform Type: Server/Bot
-- Carrier: Check all
-- Permission Needed: Glip, WebHook Subscriptions, Read Accounts, Edit Extensions
-- OAuth Redreict URI: `https://<chatbot-server>/bot/oauth`
+Click the link below to create a RingCentral app quickly:
+
+[Create Bot App](https://developer.ringcentral.com/new-app?name=Sample+Bot+App&desc=A+sample+app+created+for+the+javascript+chatbot+framework&public=true&type=ServerBot&permissions=ReadAccounts,EditExtensions,SubscriptionWebhook,Glip&redirectUri=https://<chatbot-server>/bot/oauth)
+
+Do remember to change redirect uri from `https://<chatbot-server>/bot/oauth` to the real uri.
 
 
 ## Supported features
