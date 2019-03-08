@@ -36,6 +36,7 @@ Click the link below to create a RingCentral app quickly:
 [Create Bot App](https://developer.ringcentral.com/new-app?name=Sample+Bot+App&desc=A+sample+app+created+for+the+javascript+chatbot+framework&public=true&type=ServerBot&permissions=ReadAccounts,EditExtensions,SubscriptionWebhook,Glip&redirectUri=https://<chatbot-server>/bot/oauth)
 
 Do remember to change redirect uri from `https://<chatbot-server>/bot/oauth` to the real uri.
+If you don't have a public uri, leave that field blank.
 
 
 ## Supported features
