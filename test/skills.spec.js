@@ -36,15 +36,15 @@ const app = createApp(undefined, [
 describe('skills', () => {
   test('ping pong', async () => {
     output = null
-    await app.handle({ type: 'Message4Bot', text: 'ping' })
+    await app.mergedHandle({ type: 'Message4Bot', text: 'ping' })
     expect(output).toBe('pong')
   })
   test('catch all', async () => {
     output = null
-    await app.handle({ type: 'Message4Bot', text: 'run' })
+    await app.mergedHandle({ type: 'Message4Bot', text: 'run' })
     expect(output).toBe('unhandled')
     output = null
-    await app.handle({ type: 'GroupJoined', text: 'ping' })
+    await app.mergedHandle({ type: 'GroupJoined', text: 'ping' })
     expect(output).toBe('unhandled')
   })
 })

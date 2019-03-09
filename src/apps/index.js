@@ -25,7 +25,7 @@ const createApp = (handle, skills = []) => {
       app.use('/', skill.app)
     }
   }
-  app.handle = mergedHandle // for unit testing
+  app.mergedHandle = mergedHandle // for unit testing
   return app
 }
 
