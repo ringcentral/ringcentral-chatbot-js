@@ -11,7 +11,8 @@ const createApp = (handle, skills = []) => {
     }
     for (const skill of skills) {
       if (skill.handle) {
-        handled = handled || await skill.handle(event, handled)
+        const result = await skill.handle(event, handled)
+        handled = handled || result
       }
     }
   }

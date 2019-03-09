@@ -3,12 +3,12 @@ import express from 'express'
 
 import createApp from '../src/apps'
 
-let output
+let output = []
 
 const coolSkillHandle = async event => {
   const { type, text } = event
   if (type === 'Message4Bot' && text === 'ping') {
-    output = 'pong'
+    output.push('pong')
     return true // event handled
   }
   return false // event not handled
@@ -18,10 +18,11 @@ coolSkillApp.get('/hello', async (req, res) => {
   res.send('world')
 })
 const myCoolSkill = { handle: coolSkillHandle, app: coolSkillApp }
+const myCoolSkill2 = { handle: coolSkillHandle } // two skills could handle the same event
 
 const catchAllHandle = async (event, handled) => {
   if (!handled) {
-    output = 'unhandled'
+    output.push('unhandled')
   } else {
     // event has been handled by other skills already
   }
@@ -30,21 +31,22 @@ const catchAllSkill = { handle: catchAllHandle }
 
 const app = createApp(undefined, [
   myCoolSkill,
+  myCoolSkill2,
   catchAllSkill
 ])
 
 describe('skills', () => {
   test('ping pong', async () => {
-    output = null
+    output = []
     await app.mergedHandle({ type: 'Message4Bot', text: 'ping' })
-    expect(output).toBe('pong')
+    expect(output).toEqual(['pong', 'pong']) // all the skills have chance to handle an event
   })
   test('catch all', async () => {
-    output = null
+    output = []
     await app.mergedHandle({ type: 'Message4Bot', text: 'run' })
-    expect(output).toBe('unhandled')
-    output = null
+    expect(output).toEqual(['unhandled'])
+    output = []
     await app.mergedHandle({ type: 'GroupJoined', text: 'ping' })
-    expect(output).toBe('unhandled')
+    expect(output).toEqual(['unhandled'])
   })
 })
