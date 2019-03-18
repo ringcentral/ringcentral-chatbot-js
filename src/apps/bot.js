@@ -36,7 +36,7 @@ const createApp = handle => {
           const botId = message.ownerId
           const joinGroupBot = await Bot.findByPk(botId)
           const groupId = message.body.id
-          await handle({ type: 'BotJoinGroup', bot: joinGroupBot, groupId })
+          await handle({ type: 'BotJoinGroup', bot: joinGroupBot, group: { id: groupId } })
           break
         default:
           break
