@@ -3,7 +3,7 @@
 It is quite common for a bot to integrate with third party services. For example:
 
 - You might want to create a bot reading/writing information from/to Google Sheets.
-- Or you might want to your bot to display information about your project which is hosted on GitHub.
+- Or you might want your bot to display information about your project which is hosted on GitHub.
 
 In either case, your bot needs to integrate with third party services (Google/GitHub).
 
@@ -19,18 +19,27 @@ After you [setup database](./README.md#setup-database), there are two tables: `b
 Here is the schema SQL for `services` table:
 
 ```sql
-CREATE TABLE `services` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` VARCHAR(255),
-`botId` VARCHAR(255), `groupId` VARCHAR(255), `userId` VARCHAR(255), `data` JSON,
-`createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+CREATE TABLE `services` (
+    `id` INTEGER PRIMARY KEY AUTOINCREMENT,
+    `name` VARCHAR(255),
+    `botId` VARCHAR(255),
+    `groupId` VARCHAR(255),
+    `userId` VARCHAR(255),
+    `data` JSON,
+    `createdAt` DATETIME NOT NULL,
+    `updatedAt` DATETIME NOT NULL
+);
 ```
+
+Information above is just FYI. You don't need to execute the SQL above manually. The database table is created automatically as long as you finish the [setup database](./README.md#setup-database) step.
 
 ### Database table fields
 
-- name: service name, such as "GoogleSheets", "GitHub"...etc. It uniquely identifies a third party service.
-- botId: chatbot bot user ID. For a public bot, there will be bot users for each company. Sometimes you need to store bot ID.
-- groupId: more often than not, you just want to add a serice to a specific chat group. In this field you can store that group's ID.
-- userId: this is the Glip user ID who added the service (to a specific chat group).
-- data: this is a JSON field. You can store ANY data, but normally it should contain third party service's access token.
+- `name`: service name, such as "GoogleSheets", "GitHub"...etc. It uniquely identifies a third party service.
+- `botId`: chatbot bot user ID. For a public bot, there will be bot users for each company. Sometimes you need to store bot ID.
+- `groupId`: more often than not, you just want to add a serice to a specific chat group. In this field you can store that group's ID.
+- `userId`: this is the Glip user ID who added the service (to a specific chat group). Sometimes this doesn't matter and it is nullable.
+- `data`: this is a JSON field. You can store ANY data, but normally it should contain third party service's access token.
 
 
 ## A real sample
@@ -93,8 +102,8 @@ app.get('/github/oauth', async (req, res) => {
 Note: code snippet above might not be the latest version.
 Please refer to [this file](https://github.com/tylerlong/glip-github-chatbot/blob/master/express.js) for the latest code.
 
-In the code above, we get code parameter and exchange it for access token.
-Then we save/update a service in the `services` database table.
+In the code above, we get `code` parameter and exchange it for access token.
+Then we create/update a service in the `services` database table.
 
 
 ### Step 3: Your app accesses the API with the user's access token
