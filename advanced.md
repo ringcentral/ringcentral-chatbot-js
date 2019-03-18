@@ -80,3 +80,42 @@ Catch-all skill should be the last in the skills list
 
 - [Google Drive skill](https://github.com/tylerlong/ringcentral-chatbot-skill-google-drive)
 - [Google Drive chatbot](https://github.com/tylerlong/glip-google-drive-chatbot)
+
+
+
+## Integrate with third party services
+
+It is quite common for a bot to integrate with third party services. For example:
+
+- You might want to create a bot reading/writing information from/to Google Sheets.
+- Or you might want to your bot to display information about your project which is hosted on GitHub.
+
+In either case, your bot needs to integrate with third party services (Google/GitHub).
+
+Almost all third party services use OAuth for authorization.
+So we summarized the best practice for integrating a third party service.
+
+
+### Database
+
+After you [setup database](./README.md#setup-database), there are two tables: `bots` & `services`.
+`services` table is to store information about third party services.
+
+Here is the schema SQL for `services` table:
+
+```sql
+CREATE TABLE `services` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` VARCHAR(255), `botId` VARCHAR(255), `groupId` VARCHAR(255), `userId` VARCHAR(255), `data` JSON, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+```
+
+#### Database table fields
+
+- name: service name, such as "GoogleSheets", "GitHub"...etc. It uniquely identifies a third party service.
+- botId: chatbot bot user ID. For a public bot, there will be bot users for each company. Sometimes you need to store bot ID.
+- groupId: more often than not, you just want to add a serice to a specific chat group. In this field you can store that group's ID.
+- userId: this is the Glip user ID who added the service (to a specific chat group).
+- data: this is a JSON field. You can store ANY data, but normally it should contain third party service's access token.
+
+
+### A real sample
+
+To be continued.

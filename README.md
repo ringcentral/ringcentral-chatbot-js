@@ -84,7 +84,8 @@ The following commands are considered "hidden" or "easter eggs":
 
 ## Advanced topics
 
-- [Skills](./advaned.md#skills)
+- [Skills](./advanced.md#skills)
+- [Integrate with third party services](./advanced.md#integrate-with-third-party-services)
 
 
 ## Advanced Demo bots
