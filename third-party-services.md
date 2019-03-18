@@ -122,3 +122,17 @@ Note: code snippet above might not be the latest version.
 Please refer to [this file](https://github.com/tylerlong/glip-github-chatbot/blob/master/express.js) for the latest code.
 
 ![](https://github.com/tylerlong/glip-github-chatbot/blob/master/screenshot2.png)
+
+
+
+## Other demo bots
+
+### Google Drive skill and bot
+
+- [Google Drive skill](https://github.com/tylerlong/ringcentral-chatbot-skill-google-drive)
+- [Google Drive chatbot](https://github.com/tylerlong/glip-google-drive-chatbot)
+
+
+### Glip RC Assistant Chatbot
+
+- [Glip RC Assistant Chatbot](https://github.com/tylerlong/rc-assistant)
