@@ -100,6 +100,11 @@ Then we save/update a service in the `services` database table.
 ### Step 3: Your app accesses the API with the user's access token
 
 ```js
+const service = await findService(bot, group)
+if (service === null) {
+  await sendAuthLink(bot, group)
+  return
+}
 const r = await axios.get(`https://api.github.com/user?access_token=${service.data.accessToken}`)
 await bot.sendMessage(group.id, { text: `Here is your GitHub profile: [code]${JSON.stringify(r.data, null, 2)}[/code]` })
 ```
