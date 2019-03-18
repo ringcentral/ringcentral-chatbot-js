@@ -118,4 +118,76 @@ CREATE TABLE `services` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` VARCHAR(
 
 ### A real sample
 
-To be continued.
+Let's take [Glip GitHub Chatbot](https://github.com/tylerlong/glip-github-chatbot) for example.
+
+In order to integrate a third party service, we need to read its [documentation for authorization](https://developer.github.com/apps/building-oauth-apps/authorizing-oauth-apps/).
+
+Form its documentation above, we can see that there are 3 steps.
+
+#### Step 1: Users are redirected to request their GitHub identity
+
+We need to construct an URI and send it to user:
+
+```js
+const sendAuthLink = async (bot, group) => {
+  await bot.sendMessage(group.id, {
+    text: `Please click [here](https://github.com/login/oauth/authorize?${buildQueryString({
+      client_id: process.env.GITHUB_CLIENT_ID,
+      redirect_uri: process.env.RINGCENTRAL_CHATBOT_SERVER + '/github/oauth',
+      scope: 'read:user',
+      state: `${group.id}:${bot.id}`
+    })}) to authorize me to access your GitHub data.`
+  })
+}
+```
+
+Note: code snippet above might not be the latest version.
+Please refer to [this file](https://github.com/tylerlong/glip-github-chatbot/blob/master/express.js) for the latest code.
+
+![](https://github.com/tylerlong/glip-github-chatbot/blob/master/screenshot1.png)
+
+
+#### Step 2: Users are redirected back to your site by GitHub
+
+We need to define a URI to handle users' redirected-back request:
+
+```js
+app.get('/github/oauth', async (req, res) => {
+  const { code, state } = req.query
+  const [groupId, botId] = state.split(':')
+  const r = await axios.post('https://github.com/login/oauth/access_token', {
+    client_id: process.env.GITHUB_CLIENT_ID,
+    client_secret: process.env.GITHUB_CLIENT_SECRET,
+    code,
+    state,
+    redirect_uri: process.env.RINGCENTRAL_CHATBOT_SERVER + '/github/oauth'
+  })
+  const accessToken = r.data.split('&')[0].split('=')[1]
+  const service = await findService({ id: botId }, { id: groupId })
+  if (service === null) {
+    Service.create({ name: 'GitHub', groupId, botId, data: { accessToken } })
+  } else {
+    service.update({ data: { accessToken } })
+  }
+  res.send('Please close this page')
+})
+```
+
+Note: code snippet above might not be the latest version.
+Please refer to [this file](https://github.com/tylerlong/glip-github-chatbot/blob/master/express.js) for the latest code.
+
+In the code above, we get code parameter and exchange it for access token.
+Then we save/update a service in the `services` database table.
+
+
+#### Step 3: Your app accesses the API with the user's access token
+
+```js
+const r = await axios.get(`https://api.github.com/user?access_token=${service.data.accessToken}`)
+await bot.sendMessage(group.id, { text: `Here is your GitHub profile: [code]${JSON.stringify(r.data, null, 2)}[/code]` })
+```
+
+Note: code snippet above might not be the latest version.
+Please refer to [this file](https://github.com/tylerlong/glip-github-chatbot/blob/master/express.js) for the latest code.
+
+![](https://github.com/tylerlong/glip-github-chatbot/blob/master/screenshot2.png)
