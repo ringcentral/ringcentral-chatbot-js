@@ -25,7 +25,8 @@ nav:
   - Home: index.md
   - Getting Started: developers/get-started.md
   - Building Bots: developers/bots.md
-  - Deploying to Lambda: developers/lambda.md
+  - Project Structure: developers/structure.md
+  - Deploying to AWS Lambda: developers/lambda.md
   - Developing "Skills": developers/skills.md
   - Bot Maintenance: developers/maintain.md
   - Sample Bots: samples.md

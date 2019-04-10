@@ -1,3 +1,5 @@
+no_breadcrumb: True
+
 # Developing Custom Bot Skills
 
 A "skill" is a mechanism to reuse chatbot code that can be shared across multiple bots. A skill is just a plain JavaScript object with two optional properties:

@@ -1,3 +1,5 @@
+no_breadcrumb: True
+
 # Getting Started
 
 To get started we recommend developing a bot on your local development machine or laptop. That can be done quickly and easily using the RingCentral Team Messaging Quick Start below.

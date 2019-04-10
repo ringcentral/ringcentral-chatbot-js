@@ -1,3 +1,5 @@
+no_breadcrumb: True
+
 # About the RingCentral Chatbot Framework for Javascript
 
 ## License

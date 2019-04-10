@@ -1,3 +1,5 @@
+no_breadcrumb: True
+
 # Creating Your Bot App
 
 Every bot you create must be registered with RingCentral. That can be done manually (see instructions below), or can be created quickly using the button below.
