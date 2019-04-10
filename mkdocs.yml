@@ -1,0 +1,39 @@
+site_name: RingCentral Chatbot Framework for Javascript
+site_url: https://ringcentral.github.io/ringcentral-chatbot-js
+site_description: The RingCentral Chatbot Framework for Javascript aids developers in creating and deploying bots for RingCentral Team Messaging (a.k.a. "Glip"). 
+
+repo_url: https://github.com/ringcentral/ringcentral-chatbot-js
+
+plugins:
+  - search
+  - bootstrap-tables
+
+theme:
+  name: moonstone
+  fluid_layout: False
+  custom_dir: 'theme/'
+
+markdown_extensions:
+  - markdown.extensions.admonition
+  - pymdownx.details
+  - pymdownx.keys
+  - pymdownx.superfences
+  - codehilite:
+      linenums: "None"
+
+nav:
+  - Home: index.md
+  - Developers:
+    - Getting Started: developers/get-started.md
+    - Building Bots: developers/bots.md
+    - Deploying to Lambda: developers/lambda.md
+    - Developing "Skills": developers/skills.md
+    - Bot Maintenance: developers/maintain.md
+  - Sample Bots: samples.md
+  - About: about.md
+
+extra_css:
+    - css/extra.css
+
+copyright: Copyright 2019 RingCentral Inc. 
+google_analytics: 
