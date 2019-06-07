@@ -38,5 +38,5 @@ export const postAdded = async message => {
     await bot.setAvatar(r.data, attachment.name)
     return
   }
-  return { text, group, bot, userId }
+  return { text, group, bot, userId, message: message.body }
 }
