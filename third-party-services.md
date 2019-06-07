@@ -37,7 +37,7 @@ Information above is just FYI. You don't need to execute the SQL above manually.
 
 - `name`: service name, such as "GoogleSheets", "GitHub"...etc. It uniquely identifies a third party service.
 - `botId`: chatbot bot user ID. For a public bot, there will be bot users for each company. Sometimes you need to store bot ID.
-- `groupId`: more often than not, you just want to add a serice to a specific chat group. In this field you can store that group's ID.
+- `groupId`: more often than not, you just want to add a service to a specific chat group. In this field you can store that group's ID.
 - `userId`: this is the Glip user ID who added the service (to a specific chat group). Sometimes this doesn't matter and it is nullable.
 - `data`: this is a JSON field. You can store ANY data, but normally it should contain third party service's access token.
 
