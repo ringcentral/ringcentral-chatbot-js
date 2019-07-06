@@ -17,6 +17,10 @@ const createApp = (handle, skills = []) => {
     }
   }
   const app = express()
+  app.use((req, res, next) => { // for log purpose
+    console.log(req.path)
+    next()
+  })
   app.use(express.json())
   app.use(express.urlencoded({ extended: true }))
   app.use('/admin', adminApp(mergedHandle))
