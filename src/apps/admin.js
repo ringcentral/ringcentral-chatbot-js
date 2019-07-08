@@ -47,7 +47,7 @@ const createApp = handle => {
       result += `<pre>\n${JSON.stringify(subscriptions, null, 2)}\n</pre>\n`
       result += '*****************\n'
     }
-    result += '\n\n<hr/>\n\n'
+    result += '\n<hr/>\n\n'
     const services = await Service.findAll()
     for (const service of services) {
       result += `<pre>\n${JSON.stringify(service, null, 2)}}\n</pre>\n`
