@@ -3,22 +3,22 @@ import request from 'supertest'
 
 export const createAsyncProxy = (functionName, filterApp) => {
   const lambda = new Lambda({ region: process.env.AWS_REGION })
-  return async (event, context, callback) => {
+  return async (event, context) => {
     console.log(event.path)
-    const lambdaFunction = () => {
-      lambda.invoke({
+    const lambdaFunction = async () => {
+      await lambda.invoke({
         FunctionName: process.env.AWS_LAMBDA_FUNCTION_NAME.replace(/-proxy$/, `-${functionName}`),
         InvocationType: 'Event',
         Payload: JSON.stringify(event)
-      }, (error, data) => console.log(error, data))
-      callback(null, {
+      }).promise()
+      return {
         statusCode: 200,
         headers: {
           'Validation-Token': event.headers['Validation-Token'],
           'Content-Type': 'text/html'
         },
         body: '<!doctype><html><body><script>close()</script><p>Please close this page</p></body></html>'
-      })
+      }
     }
     if (!filterApp) {
       return lambdaFunction()
@@ -27,10 +27,10 @@ export const createAsyncProxy = (functionName, filterApp) => {
     if (response.statusCode === 404) {
       return lambdaFunction()
     }
-    callback(null, {
+    return {
       statusCode: response.statusCode,
       headers: response.headers,
       body: response.text
-    })
+    }
   }
 }
