@@ -10,11 +10,13 @@ $( document ).ready( function () {
         $( '.navbar-nav li.show' ).not( $( this ).parents( "li" ) ).removeClass( "show" );
         return false;
     } );
-
+    $( '.navbar-nav ul li span' ).on( 'click', function ( e ) {
+      	return false;
+    });
     $( '.contributors img[data-src]' ).each( function() {
         src = $(this).attr("data-src");
         $(this).attr('src',src);
     });
     $('.metadata').detach().insertAfter( '#content h1:first' );
-    $('#sidenav .active').closest('.toplevel .collapse').addClass('show'); 
+    $('#sidenav .active').closest('.toplevel .collapse').addClass('show');
 } );

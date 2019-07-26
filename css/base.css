@@ -115,10 +115,25 @@ footer .footer-image-link i {
 }
 /* Left Sidebar Nav BEGIN */
 #sidebar-nav {
-    padding-top: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     background-color: #333;
     color: white;
 }
+#sidebar-nav .navbar-toggler {
+    margin-right: -15px;
+}
+#sidebar-nav .navbar-brand {
+    margin-left: -15px;
+}
+#sidebar-navbar-collapse {
+    padding-top: 20px;
+}
+#sidebar-nav hr {
+    border-color: white;
+    height: 1px;
+}
+
 #sidebar-nav a {
     color: white;
 }
@@ -211,8 +226,7 @@ a.toctree-l3 {
 }
 
 nav.navbar {
-    border-bottom: 1px solid #cdcdcd;
-    background-color: white;
+    background-color: transparent;
     font-size: 15px;
     padding: 0 15px 0 15px;
 }
@@ -222,6 +236,13 @@ nav.navbar {
 a.dropdown-toggle::after{
     content:none;
 }
+
+#mainnav.navbar {
+    border-bottom: 1px solid #cdcdcd;
+    background-color: white;
+}
+
+
 @media (min-width: 768px) {
     .navbar-nav .main-item a.dropdown-toggle {
 	padding-left: 15px;
@@ -336,7 +357,7 @@ ul.nav li.main {
     }
 }
 
-@media (min-width: 576px) {
+@media (min-width: 770px) {
      .container-fluid #sidebar-nav {
           max-width: 285px;
      }
@@ -344,7 +365,6 @@ ul.nav li.main {
           max-width: 190px;
      }
 }
-
 
 .btn:visited {
     color: white;
