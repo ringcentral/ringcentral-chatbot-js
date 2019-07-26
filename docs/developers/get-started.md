@@ -4,7 +4,7 @@ no_breadcrumb: True
 
 To get started we recommend developing a bot on your local development machine or laptop. That can be done quickly and easily using the RingCentral Team Messaging Quick Start below.
 
-<a href="https://developers.ringcentral.com/guide/team-messaging/quick-start/node" class="btn btn-primary">Read the Chatbot Quick Start &raquo;</a>
+<a href="https://developers.ringcentral.com/guide/team-messaging/manual/node" class="btn btn-primary">Read the Chatbot Quick Start &raquo;</a>
 
 ## Hello World: What a bot looks like
 
