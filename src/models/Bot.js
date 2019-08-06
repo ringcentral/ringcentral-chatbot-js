@@ -32,9 +32,10 @@ Bot.init = async ({ code, token }) => {
   } else if (token) { // private bot
     rc.token(token)
     const r = await rc.get('/restapi/v1.0/account/~/extension/~')
+    const id = r.data.id.toString()
     return Bot.create({
-      id: r.data.id,
-      token: { ...token, owner_id: r.data.id }
+      id,
+      token: { ...token, owner_id: id }
     })
   }
 }
