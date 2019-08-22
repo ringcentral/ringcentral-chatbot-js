@@ -72,16 +72,18 @@ Bot.prototype.check = async function () {
 
 Bot.prototype.ensureWebHook = async function () {
   const r = await this.rc.get('/restapi/v1.0/subscription')
-  for (const sub of r.data.records) {
-    if (sub.deliveryMode.address === process.env.RINGCENTRAL_CHATBOT_SERVER + '/bot/webhook') {
-      if (sub.status !== 'Active') {
-        await this.rc.delete(`/restapi/v1.0/subscription/${sub.id}`)
-      } else {
-        return
-      }
+  let hasActiveSub = false
+  const subs = r.data.records.filter(sub => sub.deliveryMode.address === process.env.RINGCENTRAL_CHATBOT_SERVER + '/bot/webhook')
+  for (const sub of subs) {
+    if (hasActiveSub || sub.status !== 'Active') {
+      await this.rc.delete(`/restapi/v1.0/subscription/${sub.id}`)
+    } else {
+      hasActiveSub = true
     }
   }
-  await this.setupWebHook()
+  if (!hasActiveSub) {
+    await this.setupWebHook()
+  }
 }
 Bot.prototype.setupWebHook = async function () {
   let done = false
