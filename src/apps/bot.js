@@ -19,25 +19,28 @@ const createApp = handle => {
     const body = message.body
     if (body) {
       switch (body.eventType) {
-        case 'Delete':
+        case 'Delete': {
           const deleteBot = await botDeleted(message)
           await handle({ type: 'BotRemoved', bot: deleteBot })
           break
-        case 'PostAdded':
+        }
+        case 'PostAdded': {
           const result = await postAdded(message)
           if (result) {
             await handle({ type: 'Message4Bot', ...result })
           }
           break
+        }
         case 'GroupLeft':
           await groupLeft(message)
           break
-        case 'GroupJoined':
+        case 'GroupJoined': {
           const botId = message.ownerId
           const joinGroupBot = await Bot.findByPk(botId)
           const groupId = message.body.id
           await handle({ type: 'BotJoinGroup', bot: joinGroupBot, group: { id: groupId } })
           break
+        }
         default:
           break
       }

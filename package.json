@@ -9,7 +9,7 @@
     "prepublishOnly": "yarn test && yarn build"
   },
   "dependencies": {
-    "aws-sdk": "^2.516.0",
+    "aws-sdk": "^2.518.0",
     "axios": "^0.19.0",
     "express": "^4.17.1",
     "express-basic-auth": "^1.2.0",

@@ -4,7 +4,6 @@ import request from 'supertest'
 export const createAsyncProxy = (functionName, filterApp) => {
   const lambda = new Lambda({ region: process.env.AWS_REGION })
   return async (event, context) => {
-    console.log(event.path)
     const lambdaFunction = async () => {
       await lambda.invoke({
         FunctionName: process.env.AWS_LAMBDA_FUNCTION_NAME.replace(/-proxy$/, `-${functionName}`),
