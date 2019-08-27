@@ -81,7 +81,7 @@ Bot.prototype.check = async function () {
     const errorCode = e.data.errorCode
     if (errorCode === 'OAU-232' || errorCode === 'CMN-405') {
       await this.remove()
-      console.log(`Bot user ${this.id} had been deleted`)
+      console.log(`Bot check: bot user ${this.id} had been deleted`)
       return false
     }
     throw e
