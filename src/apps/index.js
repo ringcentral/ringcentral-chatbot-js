@@ -29,6 +29,14 @@ const createApp = (handle, skills = []) => {
     }
   }
   app.mergedHandle = mergedHandle // for unit testing
+
+  const listen = app.listen.bind(app)
+  app.listen = (port, callback) => {
+    console.log(`Bot service listening on port ${port}
+Please set your RingCentral app redirect URI to ${process.env.RINGCENTRAL_CHATBOT_SERVER}/bot/oauth`)
+    listen(port, callback)
+  }
+
   return app
 }
 
