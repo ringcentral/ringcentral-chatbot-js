@@ -3,7 +3,6 @@ import axios from 'axios'
 import { Bot } from '../models'
 
 export const postAdded = async message => {
-  console.log('The bot received a new message')
   let text = message.body.text
   if (!text) {
     return // not a text message

@@ -55,10 +55,11 @@ You may need a catch-all skill
 ```js
 const handle = async (event, handled) => {
     if (!handled) {
-      console.log(`This is an unhandled event`)
+      // This is an unhandled event
     } else {
       // event has been handled by other skills already
     }
+    return true
 }
 const catchAllSkill = { handle }
 ```
