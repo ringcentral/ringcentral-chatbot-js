@@ -25,11 +25,29 @@ Bot.init = async ({ code, token }) => {
   if (code) { // public bot
     await rc.authorize({ code, redirectUri: process.env.RINGCENTRAL_CHATBOT_SERVER + '/bot/oauth' })
     const token = rc.token()
+    /*
+    {
+      access_token: 'xxxxxx',
+      token_type: 'bearer',
+      expires_in: 2147483647,
+      scope: 'EditExtensions SubscriptionWebhook Glip Accounts',
+      owner_id: '266262004',
+      endpoint_id: 'p7GZlEVHRwKDwbx6UkH0YQ'
+    }
+    */
     return Bot.create({
       id: token.owner_id,
       token
     })
   } else if (token) { // private bot
+    /*
+    {
+      access_token: 'xxxxxx',
+      creator_extension_id: '230919004',
+      creator_account_id: '230919004',
+      client_id: 'zNzIRgPiSbylEoW89Daffg'
+    }
+    */
     rc.token(token)
     const r = await rc.get('/restapi/v1.0/account/~/extension/~')
     const id = r.data.id.toString()
