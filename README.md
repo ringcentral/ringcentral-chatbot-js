@@ -19,10 +19,8 @@
 
 - If you want to create a Glip chatbot and deploy it to your own server
     - [read this tutorial](https://github.com/tylerlong/glip-ping-chatbot/tree/express)
-    - or [watch this video](https://youtu.be/CR66cwHvsOI).
 - If you want to create a Glip chatbot and deploy it to AWS Lambda
     - [read this tutorial](https://github.com/tylerlong/glip-ping-chatbot/tree/lambda)
-    - or [watch this video](https://youtu.be/JoEMXYmtn4Y).
 
 We recommend you to finish reading/watching at least one of the tutorials above before reading on.
 
