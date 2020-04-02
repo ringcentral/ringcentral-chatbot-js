@@ -15,7 +15,7 @@ const createApp = handle => {
 
   app.post('/webhook', async (req, res) => {
     const message = req.body
-    console.log('WebHook payload:', JSON.stringify(message, null, 2))
+    console.log('WebHook payload:', JSON.stringify(message))
     const body = message.body
     if (body) {
       switch (body.eventType) {
