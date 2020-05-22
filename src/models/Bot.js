@@ -13,6 +13,9 @@ export const Bot = sequelize.define('bot', {
   },
   token: {
     type: Sequelize.JSON
+  },
+  data: { // all other data associcated with this bot
+    type: Sequelize.JSON
   }
 })
 
