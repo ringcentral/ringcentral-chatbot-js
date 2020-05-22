@@ -17,10 +17,10 @@ describe('models', () => {
       }
     })
     let bots = await Bot.findAll()
-    expect(bots.map(bot => R.dissoc('updatedAt', R.dissoc('createdAt', bot.toJSON())))).toEqual([{ id: '1', token: { hello: 'world' } }])
+    expect(bots.map(bot => R.dissoc('updatedAt', R.dissoc('createdAt', bot.toJSON())))).toEqual([{ id: '1', token: { hello: 'world' }, data: null }])
     expect(bots[0].token).toEqual({ hello: 'world' })
     const bot = await Bot.findByPk('1')
-    expect(R.dissoc('updatedAt', R.dissoc('createdAt', bot.toJSON()))).toEqual({ id: '1', token: { hello: 'world' } })
+    expect(R.dissoc('updatedAt', R.dissoc('createdAt', bot.toJSON()))).toEqual({ id: '1', token: { hello: 'world' }, data: null })
 
     bots = await Bot.findAll({ where: { id: 1 } })
     expect(bots.length).toBe(1)
