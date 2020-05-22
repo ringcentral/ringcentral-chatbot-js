@@ -2,10 +2,10 @@ import Bot from './Bot'
 import Service from './Service'
 import Cache from './Cache'
 
-const setupDatabase = async () => {
-  await Bot.sync()
-  await Service.sync()
-  await Cache.sync()
+const setupDatabase = async (force = false) => {
+  await Bot.sync({ force })
+  await Service.sync({ force })
+  await Cache.sync({ force })
 }
 
 export {

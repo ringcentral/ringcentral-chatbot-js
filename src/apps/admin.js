@@ -14,9 +14,10 @@ const createApp = handle => {
     unauthorizedResponse: req => '401 Unauthorized'
   }))
 
-  // create database tables if not exists
+  // create database tables
+  // ?force=true to delete existing tables
   app.put('/setup-database', async (req, res) => {
-    await setupDatabase()
+    await setupDatabase(req.query.force === 'true')
     await handle({ type: 'SetupDatabase' })
     res.send('')
   })
