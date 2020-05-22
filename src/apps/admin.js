@@ -1,7 +1,9 @@
 import express from 'express'
 import basicAuth from 'express-basic-auth'
+import { Op } from 'sequelize'
+import moment from 'moment'
 
-import { Bot, Service } from '../models'
+import { Bot, Service, Cache, setupDatabase } from '../models'
 
 const createApp = handle => {
   const app = express()
@@ -14,13 +16,12 @@ const createApp = handle => {
 
   // create database tables if not exists
   app.put('/setup-database', async (req, res) => {
-    await Bot.sync()
-    await Service.sync()
+    await setupDatabase()
     await handle({ type: 'SetupDatabase' })
     res.send('')
   })
 
-  // "maintain": remove dead bots from database, ensure live bots have WebHooks
+  // "maintain": remove dead bots from database, ensure live bots have WebHooks, destroy very old cache data
   app.put('/maintain', async (req, res) => {
     const bots = await Bot.findAll()
     for (const bot of bots) {
@@ -32,6 +33,13 @@ const createApp = handle => {
     for (const service of services) {
       await service.check()
     }
+    await Cache.destroy({
+      where: {
+        updatedAt: {
+          [Op.lt]: moment().subtract(365, 'days').toDate()
+        }
+      }
+    })
     await handle({ type: 'Maintain' })
     res.send('')
   })
@@ -52,8 +60,16 @@ const createApp = handle => {
     for (const service of services) {
       result += `<pre>\n${JSON.stringify(service, null, 2)}}\n</pre>\n`
     }
+    result += '\n<hr/>\n\n'
+    const caches = await Cache.findAll()
+    for (const cache of caches) {
+      result += `<pre>\n${JSON.stringify(cache, null, 2)}}\n</pre>\n`
+    }
     res.send(result)
   })
+
+  // create db tables if not exist
+  setupDatabase()
 
   return app
 }

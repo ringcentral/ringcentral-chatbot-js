@@ -14,6 +14,7 @@
     "express": "^4.17.1",
     "express-basic-auth": "^1.2.0",
     "form-data": "^3.0.0",
+    "moment": "^2.26.0",
     "morgan": "^1.10.0",
     "ringcentral-js-concise": "^0.7.8",
     "sequelize": "^5.21.10",

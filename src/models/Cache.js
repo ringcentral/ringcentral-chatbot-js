@@ -2,7 +2,7 @@ import Sequelize from 'sequelize'
 
 import sequelize from './sequelize'
 
-export const Service = sequelize.define('cache', {
+const Cache = sequelize.define('cache', {
   id: { // cache ID
     type: Sequelize.INTEGER,
     autoIncrement: true,
@@ -15,3 +15,5 @@ export const Service = sequelize.define('cache', {
     type: Sequelize.JSON
   }
 })
+
+export default Cache

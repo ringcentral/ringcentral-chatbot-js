@@ -1,7 +1,7 @@
 import Sequelize from 'sequelize'
 
 import sequelize from './sequelize'
-import { Bot } from './Bot'
+import Bot from './Bot'
 
 export const Service = sequelize.define('service', {
   id: { // service ID
@@ -37,3 +37,5 @@ Service.prototype.check = async function () {
     await this.destroy()
   }
 }
+
+export default Service
