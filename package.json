@@ -1,6 +1,6 @@
 {
   "name": "ringcentral-chatbot",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "license": "MIT",
   "repository": "git@github.com:tylerlong/ringcentral-chatbot-js.git",
   "scripts": {
@@ -18,7 +18,7 @@
     "ringcentral-js-concise": "^0.7.8",
     "sequelize": "^5.21.10",
     "supertest": "^4.0.2",
-    "timeout-as-promise": "^1.0.0"
+    "wait-for-async": "^0.5.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
@@ -27,7 +27,6 @@
     "@babel/register": "^7.9.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^26.0.1",
-    "husky": "^4.2.5",
     "jest": "^26.0.1",
     "ramda": "^0.27.0",
     "sqlite3": "^4.2.0",

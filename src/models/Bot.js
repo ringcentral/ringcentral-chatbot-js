@@ -1,6 +1,6 @@
 import Sequelize from 'sequelize'
 import RingCentral from 'ringcentral-js-concise'
-import delay from 'timeout-as-promise'
+import waitFor from 'wait-for-async'
 import FormData from 'form-data'
 
 import sequelize from './sequelize'
@@ -123,7 +123,7 @@ Bot.prototype.setupWebHook = async function () {
     } catch (e) {
       const errorCode = e.data.errorCode
       if (errorCode === 'SUB-406') {
-        await delay(10000)
+        await waitFor({ interval: 10000 })
         continue
       }
       throw e
