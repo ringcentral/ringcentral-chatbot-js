@@ -1,14 +1,15 @@
 {
   "name": "ringcentral-chatbot",
-  "version": "1.6.2",
+  "version": "1.6.3",
   "license": "MIT",
   "repository": "git@github.com:tylerlong/ringcentral-chatbot-js.git",
   "scripts": {
     "test": "RINGCENTRAL_CHATBOT_DATABASE_CONNECTION_URI=sqlite:// jest",
-    "build": "rm -rf dist && babel src --out-dir dist --source-maps",
+    "build": "rm -rf dist && babel src --out-dir dist --source-maps && yarn tsc && cp build/* dist/",
     "prepublishOnly": "yarn test && yarn build"
   },
   "dependencies": {
+    "@types/supertest": "^2.0.11",
     "aws-sdk": "^2.936.0",
     "axios": "^0.21.1",
     "express": "^4.17.1",
