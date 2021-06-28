@@ -2,6 +2,7 @@ import express from 'express'
 import basicAuth from 'express-basic-auth'
 import { Op } from 'sequelize'
 import moment from 'moment'
+import sequelize from '../models/sequelize';
 
 import { Bot, Service, Cache, setupDatabase } from '../models'
 
@@ -19,6 +20,15 @@ const createApp = handle => {
   app.put('/setup-database', async (req, res) => {
     await setupDatabase(req.query.force === 'true')
     await handle({ type: 'SetupDatabase' })
+    res.send('')
+  })
+
+  app.put('/migrate-database', async (req, res) => {
+    const qi = se.getQueryInterface();
+    const desc = await qi.describeTable('bots');
+    if (!desc.data) {
+      qi.addColumn('bots', 'data', {type: JSON});
+    }
     res.send('')
   })
 
