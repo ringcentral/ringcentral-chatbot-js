@@ -1,6 +1,6 @@
 import express from 'express'
 import basicAuth from 'express-basic-auth'
-import { Op } from 'sequelize'
+import { Op, JSON, INTEGER, STRING } from 'sequelize'
 import moment from 'moment'
 import sequelize from '../models/sequelize';
 
@@ -24,11 +24,29 @@ const createApp = handle => {
   })
 
   app.put('/migrate-database', async (req, res) => {
-    const qi = se.getQueryInterface();
+    const qi = sequelize.getQueryInterface();
     const desc = await qi.describeTable('bots');
     if (!desc.data) {
-      qi.addColumn('bots', 'data', {type: JSON});
+      await qi.addColumn('bots', 'data', {type: JSON});
     }
+
+    const schemas = await qi.showAllSchemas();
+    if (schemas.filter(schema => schema.name === 'caches').length === 0) {
+      await qi.createTable('caches', {
+        id: {
+          type: INTEGER,
+          autoIncrement: true,
+          primaryKey: true,
+        },
+        key: {
+          type: STRING,
+        },
+        value: {
+          type: JSON,
+        },
+      });
+    }
+
     res.send('')
   })
 
