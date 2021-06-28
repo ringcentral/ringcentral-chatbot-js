@@ -45,6 +45,17 @@ There is an easy way:
 curl -X PUT -u admin:password https://<bot-server>/admin/setup-database
 ```
 
+## Migrate database
+
+If you update the SDK from an early version, it might not work because the database schema has changed.
+
+In such case, you can migrate the database:
+
+```
+curl -X PUT -u admin:password https://<bot-server>/admin/migrate-database
+```
+This command will smartly check your database and add new fields/tables if necessary.
+
 
 ## Maintain
 
