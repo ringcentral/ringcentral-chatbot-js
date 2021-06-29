@@ -4,12 +4,14 @@
   "license": "MIT",
   "repository": "git@github.com:tylerlong/ringcentral-chatbot-js.git",
   "scripts": {
-    "test": "RINGCENTRAL_CHATBOT_DATABASE_CONNECTION_URI=sqlite:// jest",
-    "build": "rm -rf dist && babel src --out-dir dist --source-maps && yarn tsc && cp -r build/* dist/",
+    "test": "RINGCENTRAL_CHATBOT_DATABASE_CONNECTION_URI=sqlite:// jest -c test/jest.config.ts",
+    "build": "rm -rf dist && yarn tsc",
     "prepublishOnly": "yarn test && yarn build"
   },
   "dependencies": {
     "@rc-ex/core": "^0.8.3",
+    "@types/express": "^4.17.12",
+    "@types/morgan": "^1.9.2",
     "@types/supertest": "^2.0.11",
     "@types/validator": "^13.1.4",
     "aws-sdk": "^2.936.0",
@@ -24,24 +26,17 @@
     "wait-for-async": "^0.5.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.14.5",
-    "@babel/core": "^7.14.6",
-    "@babel/preset-env": "^7.14.7",
-    "@babel/register": "^7.14.5",
+    "@types/jest": "^26.0.23",
     "@types/node": "^15.12.5",
-    "babel-jest": "^27.0.6",
+    "@types/ramda": "^0.27.41",
     "gts": "^3.1.0",
     "jest": "^27.0.6",
     "ramda": "^0.27.1",
     "sqlite3": "^5.0.2",
-    "standard": "^16.0.3",
+    "ts-jest": "^27.0.3",
+    "ts-node": "^10.0.0",
     "typescript": "^4.3.4",
     "yarn-upgrade-all": "^0.5.4"
-  },
-  "standard": {
-    "ignore": [
-      "/dist/"
-    ]
   },
   "files": [
     "dist/*",
