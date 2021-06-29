@@ -1,7 +1,7 @@
 import Lambda from 'aws-sdk/clients/lambda';
 import request from 'supertest';
 
-export const createAsyncProxy = (functionName: string, filterApp: any) => {
+export const createAsyncProxy = (functionName: string, filterApp?: any) => {
   const lambda = new Lambda({region: process.env.AWS_REGION});
   return async (event: any) => {
     const lambdaFunction = async () => {
