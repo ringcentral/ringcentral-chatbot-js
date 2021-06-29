@@ -1,3 +1,5 @@
+import RingCentral from '@rc-ex/core';
+
 export type BotType = {
   id: string;
   check: Function;
@@ -10,10 +12,12 @@ export type BotType = {
   setAvatar: Function;
   toJSON: Function;
   token: any;
+  rc: RingCentral;
 };
 
 export type ServiceType = {
   check: Function;
+  data: any;
 };
 
 export type Message = {
