@@ -3,6 +3,7 @@ import RingCentral from '@rc-ex/core';
 import waitFor from 'wait-for-async';
 import FormData from 'form-data';
 import {TokenInfo} from '@rc-ex/core/lib/definitions';
+import RestException from '@rc-ex/core/lib/RestException';
 
 import sequelize from './sequelize';
 import Service from './Service';
@@ -90,13 +91,17 @@ Object.defineProperty(Bot.prototype, 'rc', {
 
 Bot.prototype.check = async function () {
   try {
-    await this.rc.get('/restapi/v1.0/account/~/extension/~');
+    await (this.rc as RingCentral).restapi().account().extension().get();
     return true;
   } catch (e) {
-    if (!e.data) {
+    if (!(e instanceof RestException)) {
       throw e;
     }
-    const errorCode = e.data.errorCode;
+    const err = e as RestException;
+    if (!err.response.data) {
+      throw e;
+    }
+    const errorCode = e.response.data.errorCode;
     if (errorCode === 'OAU-232' || errorCode === 'CMN-405') {
       await this.remove();
       console.log(`Bot check: bot user ${this.id} had been deleted`);
@@ -144,7 +149,14 @@ Bot.prototype.setupWebHook = async function () {
       });
       done = true;
     } catch (e) {
-      const errorCode = e.data.errorCode;
+      if (!(e instanceof RestException)) {
+        throw e;
+      }
+      const err = e as RestException;
+      if (!err.response.data) {
+        throw e;
+      }
+      const errorCode = e.response.data.errorCode;
       if (errorCode === 'SUB-406') {
         await waitFor({interval: 10000});
         continue;
