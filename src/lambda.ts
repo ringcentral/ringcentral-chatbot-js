@@ -1,7 +1,10 @@
 import Lambda from 'aws-sdk/clients/lambda';
 import request from 'supertest';
 
-export const createAsyncProxy = (functionName: string, filterApp?: any) => {
+export const createAsyncProxy = (
+  functionName: string,
+  filterApp: any = undefined
+) => {
   const lambda = new Lambda({region: process.env.AWS_REGION});
   return async (event: any) => {
     const lambdaFunction = async () => {
@@ -24,7 +27,7 @@ export const createAsyncProxy = (functionName: string, filterApp?: any) => {
         body: '<!doctype><html><body><script>close()</script><p>Please close this page</p></body></html>',
       };
     };
-    if (!filterApp) {
+    if (filterApp === undefined) {
       return lambdaFunction();
     }
     const response = await request(filterApp).get(event.path);
