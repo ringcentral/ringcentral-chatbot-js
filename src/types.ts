@@ -40,3 +40,8 @@ export type Message = {
   };
   ownerId: string;
 };
+
+export type AttachmentType = {
+  type: string;
+  contentUri: string;
+};
