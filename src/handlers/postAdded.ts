@@ -43,6 +43,7 @@ export const postAdded = async (message: Message) => {
   }
   if (text.startsWith('__updateToken__')) {
     await bot.updateToken(text.substring(15).trim());
+    return;
   }
   return {text, group, bot, userId, message: message.body};
 };
