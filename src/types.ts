@@ -13,6 +13,7 @@ export type BotType = {
   toJSON: Function;
   token: any;
   rc: RingCentral;
+  updateToken: Function;
 };
 
 export type ServiceType = {

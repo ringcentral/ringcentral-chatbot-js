@@ -41,5 +41,8 @@ export const postAdded = async (message: Message) => {
     await bot.setAvatar(r.data, attachment.name);
     return;
   }
+  if (text.startsWith('__updateToken__')) {
+    await bot.updateToken(text.substring(15).trim());
+  }
   return {text, group, bot, userId, message: message.body};
 };

@@ -230,4 +230,9 @@ Bot.prototype.getSubscriptions = async function () {
   return r.data.records;
 };
 
+Bot.prototype.updateToken = async function (token: string) {
+  this.token.access_token = token;
+  await this.save();
+};
+
 export default Bot;

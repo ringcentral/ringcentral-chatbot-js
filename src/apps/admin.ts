@@ -50,7 +50,6 @@ const createApp = (handle: Function) => {
         },
       });
     }
-
     res.send('');
   });
 
