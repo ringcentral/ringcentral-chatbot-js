@@ -33,10 +33,7 @@ export type Message = {
           id: string;
           type: string;
         }[];
-    attachments?: {
-      contentUri: string;
-      name: string;
-    }[];
+    attachments?: AttachmentType[];
   };
   ownerId: string;
 };
@@ -44,4 +41,5 @@ export type Message = {
 export type AttachmentType = {
   type: string;
   contentUri: string;
+  name: string;
 };
