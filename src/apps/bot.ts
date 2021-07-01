@@ -8,18 +8,16 @@ const createApp = (handle: Function) => {
   const app = express();
 
   app.all('/oauth', async (req, res) => {
-    res.send('');
     const bot = (await (Bot as any).init({
       code: req.query.code,
       token: req.body,
     })) as BotType;
     await bot.setupWebHook(); // this might take a while, depends on when the bot user is ready
     await handle({type: 'BotAdded', bot});
+    res.send('');
   });
 
   app.post('/webhook', async (req, res) => {
-    res.header('Validation-Token', req.header('Validation-Token'));
-    res.send('');
     const message = req.body;
     console.log('WebHook payload:', JSON.stringify(message));
     const body = message.body;
@@ -56,6 +54,8 @@ const createApp = (handle: Function) => {
       }
       await handle({type: body.eventType, message});
     }
+    res.header('Validation-Token', req.header('Validation-Token'));
+    res.send('');
   });
 
   return app;
