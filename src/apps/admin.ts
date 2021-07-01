@@ -28,7 +28,9 @@ const createApp = (handle: Function) => {
   });
 
   app.put('/update-token', async (req, res) => {
-    const bot = Bot.findByPk(req.query.id as string) as unknown as BotType;
+    const bot = (await Bot.findByPk(
+      req.query.id as string
+    )) as unknown as BotType;
     if (bot !== null) {
       await bot.updateToken((req.query.token as string).trim());
     }
