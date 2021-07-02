@@ -83,11 +83,17 @@ curl -X GET -u admin:password https://<bot-server>/admin/diagnostic
 ```
 
 
+## Update token
+
+curl -X PUT -u admin:password https://<bot-server>/admin/update-token?id=<bot-id>&token=access-token'
+
+
 ## Hidden commands
 
 The following commands are considered "hidden" or "easter eggs":
 
 - `__rename__ <newName>`: rename bot to `newName`
+- `__updateToken__ <access_token>`: update bot access token to `access_token`
 - A message with text `__setAvatar__` and an attached image file: set bot avatar to the attached image
 
 
