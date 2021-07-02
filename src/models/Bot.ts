@@ -232,6 +232,7 @@ Bot.prototype.getSubscriptions = async function () {
 
 Bot.prototype.updateToken = async function (token: string) {
   this.token.access_token = token;
+  this.changed('token', true);
   await this.save();
 };
 
