@@ -76,10 +76,11 @@ It is recommended that you create a cron job to run this command daily.
 
 ## Diagnostic
 
-Sometimes there are issues and you don't know what happened. This framework provides an interface for diagnostic:
+Sometimes there are issues and you don't know what happened. This framework provides interfaces for diagnostic:
 
 ```
-curl -X GET -u admin:password https://<bot-server>/admin/diagnostic
+curl -X GET -u admin:password https://<bot-server>/admin/dump-database
+curl -X GET -u admin:password https://<bot-server>/admin/list-subscriptions
 ```
 
 

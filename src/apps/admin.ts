@@ -86,15 +86,13 @@ const createApp = (handle: Function) => {
     res.send('');
   });
 
-  // provide administrator with diagnostic information for troubleshooting
-  app.get('/diagnostic', async (req, res) => {
+  // provide administrator with database data for troubleshooting
+  app.get('/dump-database', async (req, res) => {
     const bots = (await Bot.findAll()) as unknown as BotType[];
     let result = '';
     for (const bot of bots) {
       result += '*****************\n';
       result += `<pre>\n${JSON.stringify(bot, null, 2)}\n</pre>\n`;
-      const subscriptions = await bot.getSubscriptions();
-      result += `<pre>\n${JSON.stringify(subscriptions, null, 2)}\n</pre>\n`;
       result += '*****************\n';
     }
     result += '\n<hr/>\n\n';
@@ -106,6 +104,19 @@ const createApp = (handle: Function) => {
     const caches = await Cache.findAll();
     for (const cache of caches) {
       result += `<pre>\n${JSON.stringify(cache, null, 2)}}\n</pre>\n`;
+    }
+    res.send(result);
+  });
+
+  // provide administrator with subscriptions data for troubleshooting
+  app.get('/list-subscriptions', async (req, res) => {
+    const bots = (await Bot.findAll()) as unknown as BotType[];
+    let result = '';
+    for (const bot of bots) {
+      result += '*****************\n';
+      const subscriptions = await bot.getSubscriptions();
+      result += `<pre>\n${JSON.stringify(subscriptions, null, 2)}\n</pre>\n`;
+      result += '*****************\n';
     }
     res.send(result);
   });
