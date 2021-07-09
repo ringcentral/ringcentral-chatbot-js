@@ -14,6 +14,7 @@ export type BotType = {
   token: any;
   rc: RingCentral;
   updateToken: Function;
+  sendMessage: Function;
 };
 
 export type ServiceType = {
