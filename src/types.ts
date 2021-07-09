@@ -17,8 +17,13 @@ export type BotType = {
 };
 
 export type ServiceType = {
-  check: Function;
+  id: number;
+  name: string;
+  botId: string;
+  groupId: string;
+  userId: string;
   data: any;
+  check: Function;
 };
 
 export type Message = {
