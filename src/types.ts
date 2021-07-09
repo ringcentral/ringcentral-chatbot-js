@@ -25,6 +25,7 @@ export type ServiceType = {
   userId: string;
   data: any;
   check: Function;
+  destroy: Function;
 };
 
 export type Message = {
