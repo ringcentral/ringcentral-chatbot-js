@@ -174,6 +174,14 @@ Bot.prototype.sendMessage = async function (groupId: string, messageObj: any) {
   return r.data;
 };
 
+Bot.prototype.sendAdaptiveCard = async function (groupId: string, body: any) {
+  const r = await this.rc.post(
+    `/restapi/v1.0/glip/chats/${groupId}/adaptive-cards`,
+    body
+  );
+  return r.data;
+};
+
 Bot.prototype.getGroup = async function (groupId: string) {
   try {
     const r = await this.rc.get(`/restapi/v1.0/glip/groups/${groupId}`);
