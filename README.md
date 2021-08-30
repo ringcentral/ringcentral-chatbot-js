@@ -86,7 +86,9 @@ curl -X GET -u admin:password https://<bot-server>/admin/list-subscriptions
 
 ## Update token
 
-curl -X PUT -u admin:password https://<bot-server>/admin/update-token?id=<bot-id>&token=access-token'
+```
+curl -X PUT -u admin:password https://<bot-server>/admin/update-token?id=<bot-extension-id>&token=access-token'
+```
 
 
 ## Hidden commands
