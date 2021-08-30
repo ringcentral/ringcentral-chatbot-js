@@ -138,3 +138,8 @@ The following commands are considered "hidden" or "easter eggs":
     - Do NOT invoke lambda functions in global code outside of handlers
     - I tried once and it seemed to case dead-lock. Lots of requests which causes 429 error and database connection exhausted
         - In global code I did `axio.put('https://<bot-server>/admin/maintain')` and it caused dead-lock
+
+
+## Todo
+
+- send api to change presence, let bot user to be online
