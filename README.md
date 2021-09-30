@@ -106,6 +106,17 @@ The following commands are considered "hidden" or "easter eggs":
 - [Integrate with third party services](./third-party-services.md)
 
 
+## About graduation
+
+In order to graduate a RingCentral app, you need to invoke each API endpoint used in your app at least 5 times. 
+
+In order to to meet this requirement quickly, you can invoke API endpoints explicitly in code, for example:
+
+```
+await bot.rc.get('/restapi/v1.0/account/~/extension/~')
+```
+
+
 ## Advanced Demo bots
 
 - [Glip Crontab Chatbot](https://github.com/tylerlong/glip-crontab-chatbot)
