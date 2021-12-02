@@ -67,8 +67,8 @@ type InitOptions = {
     }
     */
     rc.token = token;
-    const r = await rc.get('/restapi/v1.0/account/~/extension/~');
-    const id = r.data.id.toString();
+    const extInfo = await rc.restapi().account().extension().get();
+    const id = extInfo.id;
     return Bot.create({
       id,
       token: {...token, owner_id: id},
@@ -187,7 +187,7 @@ Bot.prototype.getGroup = async function (groupId: string) {
     const r = await this.rc.get(`/restapi/v1.0/glip/groups/${groupId}`);
     return r.data;
   } catch (e) {
-    if (e.status === 404) {
+    if ((e as RestException).response.status === 404) {
       return undefined;
     }
     throw e;
