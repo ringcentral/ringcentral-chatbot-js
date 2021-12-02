@@ -3,6 +3,7 @@
   "version": "1.9.0",
   "license": "MIT",
   "repository": "git@github.com:tylerlong/ringcentral-chatbot-js.git",
+  "engines" : { "node" : ">=10.0" },
   "scripts": {
     "test": "RINGCENTRAL_CHATBOT_DATABASE_CONNECTION_URI=sqlite:// jest -c test/jest.config.ts",
     "build": "rm -rf dist && yarn tsc",
