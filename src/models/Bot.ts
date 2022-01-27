@@ -245,6 +245,9 @@ Bot.prototype.getSubscriptions = async function () {
   const r = await this.rc.get('/restapi/v1.0/subscription');
   return r.data.records;
 };
+Bot.prototype.deleteSubscription = async function (subscriptionId: string) {
+  await this.rc.delete(`/restapi/v1.0/subscription/${subscriptionId}`);
+};
 
 Bot.prototype.updateToken = async function (token: string) {
   this.token.access_token = token;

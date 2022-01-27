@@ -1,7 +1,7 @@
 import express from 'express';
 
 import {Bot} from '../models';
-import {botDeleted, postAdded, groupLeft} from '../handlers';
+import {botDeleted, postAdded, groupLeft, userSubmitted} from '../handlers';
 import {BotType} from '../types';
 
 const createApp = (handle: Function) => {
@@ -55,6 +55,16 @@ const createApp = (handle: Function) => {
       await handle({type: body.eventType, message});
     }
     res.header('Validation-Token', req.header('Validation-Token'));
+    res.send('');
+  });
+
+  app.post('/submit', async (req, res) => {
+    const message = req.body;
+    console.log('Outbound WebHook payload:', JSON.stringify(message));
+    const result = await userSubmitted(message);
+    if (result) {
+      await handle({type: 'UserSubmit', ...result});
+    }
     res.send('');
   });
 
