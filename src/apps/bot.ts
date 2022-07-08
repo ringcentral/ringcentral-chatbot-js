@@ -60,10 +60,16 @@ const createApp = (handle: Function) => {
 
   app.post('/submit', async (req, res) => {
     const message = req.body;
-    console.log('Outbound WebHook payload:', JSON.stringify(message));
+    console.log('Submit payload:', JSON.stringify(message));
     const result = await userSubmitted(message);
     if (result) {
-      await handle({type: 'UserSubmit', ...result});
+      const r = await handle({type: 'UserSubmit', ...result});
+      if (r && r.type === 'dialog') {
+        res.status(200);
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify(r));
+        return;
+      }
     }
     res.send('');
   });
