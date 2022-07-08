@@ -19,6 +19,7 @@ const createApp = (
         handled = handled || result;
       }
     }
+    return handled;
   };
   const app = express();
   app.use(morgan('tiny'));
