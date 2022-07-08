@@ -2,7 +2,7 @@ import Sequelize from 'sequelize';
 import RingCentral from '@rc-ex/core';
 import waitFor from 'wait-for-async';
 import FormData from 'form-data';
-import {TokenInfo} from '@rc-ex/core/lib/definitions';
+import TokenInfo from '@rc-ex/core/lib/definitions/TokenInfo';
 import RestException from '@rc-ex/core/lib/RestException';
 
 import sequelize from './sequelize';
