@@ -4,7 +4,7 @@ no_breadcrumb: True
 
 Every bot you create must be registered with RingCentral. That can be done manually (see instructions below), or can be created quickly using the button below.
 
-<a href="https://developer.ringcentral.com/new-app?name=My+Bot+App&desc=A+sample+app+created+for+the+javascript+chatbot+framework&public=true&type=ServerBot&permissions=ReadAccounts,EditExtensions,SubscriptionWebhook,Glip&redirectUri=https://%3Cchatbot-server%3E/bot/oauth" class="btn btn-primary">Create Bot App</a>
+<a href="https://developer.ringcentral.com/new-app?name=My+Bot+App&desc=A+sample+app+created+for+the+javascript+chatbot+framework&public=true&type=ServerBot&permissions=ReadAccounts,EditExtensions,SubscriptionWebhook,TeamMessaging&redirectUri=https://%3Cchatbot-server%3E/bot/oauth" class="btn btn-primary">Create Bot App</a>
 
 ## Manual Installation Instructions
 
