@@ -55,6 +55,7 @@ const createApp = (handle: Function) => {
       await handle({type: body.eventType, message});
     }
     res.header('Validation-Token', req.header('Validation-Token'));
+    res.setHeader('Content-Type', 'application/json');
     res.send('');
   });
 
