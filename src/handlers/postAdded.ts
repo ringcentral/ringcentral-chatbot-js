@@ -15,6 +15,10 @@ export const postAdded = async (message: Message) => {
   }
   const groupId = message.body.groupId;
   const bot = (await Bot.findByPk(botId)) as unknown as BotType;
+  if (bot === null) {
+    console.error(`bot ${botId} not found in DB`);
+    return;
+  }
   const group = await bot.getGroup(groupId);
   const isPrivateChat = group.members.length <= 2;
   if (
