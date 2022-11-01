@@ -83,6 +83,8 @@ curl -X GET -u admin:password https://<bot-server>/admin/dump-database
 curl -X GET -u admin:password https://<bot-server>/admin/list-subscriptions
 ```
 
+To enable verbose logging, please define environment variable `RC_VERBOSE_LOGGING` with string value "true".
+
 
 ## Update token
 

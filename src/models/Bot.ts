@@ -48,8 +48,8 @@ type InitOptions = {
       token_type: 'bearer',
       expires_in: 2147483647,
       scope: 'EditExtensions SubscriptionWebhook Glip Accounts',
-      owner_id: '266262004',
-      endpoint_id: 'p7GZlEVHRwKDwbx6UkH0YQ'
+      owner_id: 'yyyyyy',
+      endpoint_id: 'zzzzzz'
     }
     */
     return Bot.create({
@@ -61,9 +61,9 @@ type InitOptions = {
     /*
     {
       access_token: 'xxxxxx',
-      creator_extension_id: '230919004',
-      creator_account_id: '230919004',
-      client_id: 'zNzIRgPiSbylEoW89Daffg'
+      creator_extension_id: '1234',
+      creator_account_id: '2345',
+      client_id: 'zzzz'
     }
     */
     rc.token = token;
@@ -247,6 +247,9 @@ Bot.prototype.getSubscriptions = async function () {
 };
 Bot.prototype.deleteSubscription = async function (subscriptionId: string) {
   await this.rc.delete(`/restapi/v1.0/subscription/${subscriptionId}`);
+};
+Bot.prototype.deletePost = async function (groupId: string, postId: string) {
+  await this.rc.delete(`/restapi/v1.0/glip/chats/${groupId}/posts/${postId}`);
 };
 
 Bot.prototype.updateToken = async function (token: string) {

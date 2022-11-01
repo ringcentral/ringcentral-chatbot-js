@@ -19,7 +19,9 @@ const createApp = (handle: Function) => {
 
   app.post('/webhook', async (req, res) => {
     const message = req.body;
-    console.log('WebHook payload:', JSON.stringify(message));
+    if (process.env.RC_VERBOSE_LOGGING === 'true') {
+      console.log('WebHook payload:', JSON.stringify(message));
+    }
     const body = message.body;
     if (body) {
       switch (body.eventType) {
@@ -61,7 +63,9 @@ const createApp = (handle: Function) => {
 
   app.post('/submit', async (req, res) => {
     const message = req.body;
-    console.log('Submit payload:', JSON.stringify(message));
+    if (process.env.RC_VERBOSE_LOGGING === 'true') {
+      console.log('Submit payload:', JSON.stringify(message));
+    }
     const result = await userSubmitted(message);
     if (result) {
       const r = await handle({type: 'UserSubmit', ...result});
