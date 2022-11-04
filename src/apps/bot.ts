@@ -48,6 +48,7 @@ const createApp = (handle: Function) => {
             type: 'BotJoinGroup',
             bot: joinGroupBot,
             group: {id: groupId},
+            message,
           });
           break;
         }
